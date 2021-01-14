@@ -4,10 +4,10 @@
 \alias{exampleData}
 \title{Import examplary data}
 \usage{
-exampleData(fileName = NULL)
+exampleData(fileName = "database.xlsx")
 }
 \arguments{
-\item{fileName}{Name of example file. If `NULL`, a list of all example files will provided.}
+\item{fileName}{Name of example file. See 'details' section for further explanation.}
 }
 \description{
 optimLanduse comes bundled with exemplary land-use options and indicator values. The
@@ -15,8 +15,7 @@ files can also be found on your computer in the package folder `inst/extdata`. A
 enable quick application of the package and to view the expected structure of the data.
 }
 \details{
-This function is adopted from the example function of the
-readxl pakage (1.3.1-2).
+\emph{database.xlsx} and \emph{databaseShrinked.xlsx} are exerpts grom Claff et al .... tbd. Volker
 }
 \examples{
 exampleData()
