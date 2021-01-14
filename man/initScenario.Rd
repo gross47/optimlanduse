@@ -43,7 +43,7 @@ The expected format is explained in the example on
 }
 \examples{
 require(readxl)
-dat <- read_xlsx(exampleData("databaseShrinked"), col_names = FALSE)
-dataPreparation(dat)
+dat <- read_xlsx(exampleData("databaseShrinked.xlsx"), col_names = FALSE)
+dat <- dataPreparation(dat)
 init <- initScenario(dat, uValue = 2, optimisticRule = "expectation", fixDistance = NULL)
 }

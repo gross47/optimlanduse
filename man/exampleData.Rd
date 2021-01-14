@@ -18,6 +18,7 @@ enable quick application of the package and to view the expected structure of th
 \emph{database.xlsx} and \emph{databaseShrinked.xlsx} are exerpts grom Claff et al .... tbd. Volker
 }
 \examples{
+require(readxl)
 path <- exampleData()
 read_xlsx(path, col_names = FALSE)
 path <- exampleData("database.xlsx")

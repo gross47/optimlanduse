@@ -120,7 +120,7 @@ library(dplyr)
 library(tidyr) 
 
 # Daten einlesen
-dat <- read_xlsx(exampleData("databaseShrinked"), col_names = FALSE)
+dat <- read_xlsx(exampleData("databaseShrinked.xlsx"), col_names = FALSE)
 dataPreparation(dat)
 
 # Optimierung initialisieren
@@ -145,7 +145,7 @@ library(optimLanduse)
 library(readxl)
 
 # Daten einlesen
-dat <- read_xlsx(exampleData("databaseShrinked"), col_names = FALSE)
+dat <- read_xlsx(exampleData("databaseShrinked.xlsx"), col_names = FALSE)
 dataPreparation(dat)
 
 # Sequenz definieren
@@ -191,7 +191,7 @@ library(readxl)
 library(doParallel)
 
 # Daten einlesen
-dat <- read_xlsx(exampleData("databaseShrinked"), col_names = FALSE)
+dat <- read_xlsx(exampleData("databaseShrinked.xlsx"), col_names = FALSE)
 dataPreparation(dat)
 
 # Kerne initialisieren, bspw. 8 Kerne

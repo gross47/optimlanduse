@@ -9,6 +9,7 @@
 #' @param fileName Name of example file. See 'details' section for further explanation.
 #' @export
 #' @examples
+#' require(readxl)
 #' path <- exampleData()
 #' read_xlsx(path, col_names = FALSE)
 #' path <- exampleData("database.xlsx")

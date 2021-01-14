@@ -25,8 +25,8 @@
 #' @return A formated table with land-use options and indicator values ready for initialization via \code{\link{initScenario}}.
 #' @examples
 #' require(readxl)
-#' dat <- read_xlsx(exampleData("databaseShrinked"), col_names = FALSE)
-#' dataPreparation(dat)
+#' dat <- read_xlsx(exampleData("databaseShrinked.xlsx"), col_names = FALSE)
+#' dat <- dataPreparation(dat)
 
 #' @import dplyr
 #' @importFrom stats na.omit

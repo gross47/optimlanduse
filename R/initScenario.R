@@ -30,8 +30,8 @@
 #' @return An initialized optimLanduse S3 object ready for optimization.
 #' @examples
 #' require(readxl)
-#' dat <- read_xlsx(exampleData("databaseShrinked"), col_names = FALSE)
-#' dataPreparation(dat)
+#' dat <- read_xlsx(exampleData("databaseShrinked.xlsx"), col_names = FALSE)
+#' dat <- dataPreparation(dat)
 #' init <- initScenario(dat, uValue = 2, optimisticRule = "expectation", fixDistance = NULL)
 
 
