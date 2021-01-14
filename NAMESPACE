@@ -2,6 +2,7 @@
 
 export(calcDistanceToPerformanceScenario)
 export(dataPreparation)
+export(exampleData)
 export(initScenario)
 export(solveScenario)
 import(dplyr)
