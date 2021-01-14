@@ -8,16 +8,24 @@
 
 #' Transform the data to the expected format
 #'
-#' The data must suit to the specific expected optimLanduse format. This function provides possibility to easily transform data in the form of the exemplary data LINK to the expected format. Application of this function is thus not mandatory if you want to transform your data manually or, if your dat are not formated as in the example data.
+#' The data must suit to the specific expected optimLanduse format. This function
+#' provides possibility to easily transform data from the commonly used form
+#' of the exemplary data
+#' \code{\link{exampleData}} into to the expected format. Application of this function
+#' is thus not mandatory
+#' if you want to transform your data yourself or, if your data are not formated like
+#' in the example data.
 #'
 #'
-#' @param dat Data frame formated as shown in the example (exemplary_data.xlsx).
-#' @param uncertainty Indicates whether the uncertainty shall be repesented by SE or SD. Please be aware that the respective chosen uncertainty must be included in the data. Best would be to consider the format of the exemplary data (database.xlsx) in the GitLab.
-#' @param expVAL Indicates how the expected Value should be represented.
-#' @return An initialized landUse object ready for initScenario.
+#' @param dat Data frame formated as shown in the examples \code{\link{exampleData}}.
+#' @param uncertainty Indicates whether the uncertainty shall be repesented by standard
+#' error or standard deviation. Please be aware that the respective chosen uncertainty must
+#' be covered in the data. Best would be to consider the format of the exemplary data.
+#' @param expVAL Indicates the column name of the expected value.
+#' @return A formated table with land-use options and indicator values ready for initialization via \code{\link{initScenario}}.
 #' @examples
 #' require(readxl)
-#' dat <- read_xlsx(exampleData(), col_names = FALSE)
+#' dat <- read_xlsx(exampleData("databaseShrinked"), col_names = FALSE)
 #' dataPreparation(dat)
 
 #' @import dplyr

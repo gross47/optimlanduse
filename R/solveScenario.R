@@ -6,13 +6,19 @@
 
 #' Perform the optimization
 #'
-#' The function solves the initialized *optimLanduse* object.
+#' The function solves the initialized \emph{optimLanduse} object.
 #'
-#' @param x The initialized *optimLanduse* object.
-#' @param digitsPrecision Precision.
+#' @param x The initialized \emph{optimLanduse} object.
+#' @param digitsPrecision Precision of the solution.
 #' @param lowerBound An optional vector lower bounds for the land-use options. Must be in the dimension of the land-use options if delivered.
 #' @param upperBound An optional vector upper bounds for the land-use options. Must be in the dimension of the land-use options if delivered.
 #' @return A solved landUse portfolio ready for export or further data processing.
+#' @examples
+#' require(readxl)
+#' dat <- read_xlsx(exampleData("databaseShrinked"), col_names = FALSE)
+#' dataPreparation(dat)
+#' init <- initScenario(dat, uValue = 2, optimisticRule = "expectation", fixDistance = NULL)
+#' result <- solveScenario(x = init)
 
 #' @import lpSolveAPI
 

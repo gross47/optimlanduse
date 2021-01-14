@@ -2,7 +2,7 @@
 % Please edit documentation in R/calcDistanceToPerformanceScenario.R
 \name{calcDistanceToPerformanceScenario}
 \alias{calcDistanceToPerformanceScenario}
-\title{Attach portfolio performance and distance to target}
+\title{Attach portfolio performance and distance to target tbd. Kai B.}
 \usage{
 calcDistanceToPerformanceScenario(x)
 }

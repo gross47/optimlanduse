@@ -120,11 +120,11 @@ library(dplyr)
 library(tidyr) 
 
 # Daten einlesen
-dat <- read_xlsx("database (shrinked).xlsx", col_names = FALSE)
-dat <- dataPreparation(dat = dat, uncertainty = "SE")
+dat <- read_xlsx(exampleData("databaseShrinked"), col_names = FALSE)
+dataPreparation(dat)
 
 # Optimierung initialisieren
-init <- initScenario(dat, uValue = 2, optimisticRule = "expectation")
+init <- initScenario(dat, uValue = 2, optimisticRule = "expectation", fixDistance = NULL)
 
 # Optimierung durchführen
 result <- solveScenario(x = init)
@@ -145,8 +145,8 @@ library(optimLanduse)
 library(readxl)
 
 # Daten einlesen
-dat <- read_xlsx("database (shrinked).xlsx", col_names = FALSE)
-dat <- dataPreparation(dat = dat, uncertainty = "SE")
+dat <- read_xlsx(exampleData("databaseShrinked"), col_names = FALSE)
+dataPreparation(dat)
 
 # Sequenz definieren
 u <- seq(1, 5, 1)
@@ -191,8 +191,8 @@ library(readxl)
 library(doParallel)
 
 # Daten einlesen
-dat <- read_xlsx("database (shrinked).xlsx", col_names = FALSE)
-dat <- dataPreparation(dat = dat, uncertainty = "SE")
+dat <- read_xlsx(exampleData("databaseShrinked"), col_names = FALSE)
+dataPreparation(dat)
 
 # Kerne initialisieren, bspw. 8 Kerne
 registerDoParallel(8)

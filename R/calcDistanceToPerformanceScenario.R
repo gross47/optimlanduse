@@ -5,7 +5,7 @@
 # Maintainer: Kai Husmann
 # Developer: Kai Husmann, Kai Bödecker
 
-#' Attach portfolio performance and distance to target
+#' Attach portfolio performance and distance to target tbd. Kai B.
 #'
 #' The function calculates and attaches the portfolio performance and distance to target. See Gosling et al. Formula S5 (supplementary).
 #' @param x An optimized optimLanduse object.

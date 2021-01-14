@@ -6,13 +6,35 @@
 
 #' Initialize the robust optimization
 #'
-#' The function translates the prepared lanUse object into a solvable *optimLanduse* S3 object. Aim of the separation of the initialization and the optimization is to save time in the (possibly time-cunsuming) optimization.
+#' The function is used to initialize a \emph{optimLanduse} S3 object from the formated
+#' coefficients table.
 #'
-#' @param coefTable Parameter and uncertainties in a specific format. Usage of the 'dataPreparation' function is recommended to make sure, the format requiremnts are met.
+#' The expected format is explained in the example on
+#'  \href{https://gitlab.gwdg.de/forest_economics_goettingen/optimlanduse}{GitLab}.
+#'  Usage of \code{\link{dataPreparation}} is recommended to ensure that
+#'  the format requirements are met.
+#'
+#'  Aim of the separation of the initialization and the optimization is to save
+#'  calculation time. The separated function calls allow the user to perform multiple
+#'  optimization-runs from one initialized object. This could save time in batch
+#'  applications.
+
+#'
+#' @param coefTable Coefficient table in the specific optimLanduse format.
 #' @param uValue u Value.
-#' @param optimisticRule Either *expectation* or *uncertaintyAdjustedExpectation*. It indicates whether the optimistic outcomes of an indicator are directly reflected by the *expectation* or if the indicator is calculated *adjusted* by *expectation* + *uncertainty*.
-#' @param fixDistance tbd.
-#' @return An initialized landUse object ready for optimization.
+#' @param optimisticRule Either \emph{expectation} or \emph{uncertaintyAdjustedExpectation}.
+#' It indicates whether the optimistic outcomes of an indicator are directly
+#' reflected by the expectation or if the indicator is adjusted by expectation +
+#' uncertainty in case "more is better", expectation - uncertainty respectively when "less is better".
+#' @param fixDistance tbd. Kai B.
+#' @return An initialized optimLanduse S3 object ready for optimization.
+#' @examples
+#' require(readxl)
+#' dat <- read_xlsx(exampleData("databaseShrinked"), col_names = FALSE)
+#' dataPreparation(dat)
+#' init <- initScenario(dat, uValue = 2, optimisticRule = "expectation", fixDistance = NULL)
+
+
 
 #' @import dplyr
 #' @import tidyr

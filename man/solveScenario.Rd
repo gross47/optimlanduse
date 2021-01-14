@@ -7,9 +7,9 @@
 solveScenario(x, digitsPrecision = 4, lowerBound = 0, upperBound = 1)
 }
 \arguments{
-\item{x}{The initialized *optimLanduse* object.}
+\item{x}{The initialized \emph{optimLanduse} object.}
 
-\item{digitsPrecision}{Precision.}
+\item{digitsPrecision}{Precision of the solution.}
 
 \item{lowerBound}{An optional vector lower bounds for the land-use options. Must be in the dimension of the land-use options if delivered.}
 
@@ -19,5 +19,12 @@ solveScenario(x, digitsPrecision = 4, lowerBound = 0, upperBound = 1)
 A solved landUse portfolio ready for export or further data processing.
 }
 \description{
-The function solves the initialized *optimLanduse* object.
+The function solves the initialized \emph{optimLanduse} object.
+}
+\examples{
+require(readxl)
+dat <- read_xlsx(exampleData("databaseShrinked"), col_names = FALSE)
+dataPreparation(dat)
+init <- initScenario(dat, uValue = 2, optimisticRule = "expectation", fixDistance = NULL)
+result <- solveScenario(x = init)
 }

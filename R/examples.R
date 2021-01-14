@@ -9,8 +9,12 @@
 #' @param fileName Name of example file. See 'details' section for further explanation.
 #' @export
 #' @examples
-#' exampleData()
-#' exampleData("dataset.xlsx")
+#' path <- exampleData()
+#' read_xlsx(path, col_names = FALSE)
+#' path <- exampleData("database.xlsx")
+#' read_xlsx(path, col_names = FALSE)
+#' path <- exampleData("databaseShrinked.xlsx")
+#' read_xlsx(path, col_names = FALSE)
 exampleData <- function(fileName = "database.xlsx") {
   possibleFiles <- dir(system.file("extdata", package = "optimLanduse"))
   if(fileName %in% possibleFiles) {
