@@ -13,5 +13,8 @@ calcDistanceToPerformanceScenario(x)
 An optimized optimLanduse object with attached portfolio performance.
 }
 \description{
-The function calculates and attaches the portfolio performance and distance to target. See Gosling, Reith, Knoke, Gerique and Paul (2020): Exploring farmer perceptions of agroforestry via multi-objective optimisation: a test application in Eastern Panama. Formula S5 (supplementary).
+The function calculates and attaches the portfolio performance and distance to target. See Gosling et al. Formula S5 (supplementary).
+}
+\references{
+Gosling, E., Reith, E., Knoke T., Gerique, A., Paul, C. (2020): Exploring farmer perceptions of agroforestry via multi-objective optimisation: a test application in Eastern Panama. \emph{Agroforestry Systems} \strong{94} (2020). \url{https://doi.org/10.1007/s10457-020-00519-0}
 }

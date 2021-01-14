@@ -6,13 +6,17 @@
 # Maintainer: Kai Husmann
 # Developer: Kai Husmann, Kai Bödecker, Volker von Groß
 
-#' Preparation of the data for the robust optimization
+#' Transform the data to the expected format
+#'
+#' The data must suit to the specific expected optimLanduse format. This function provides possibility to easily transform data in the form of the exemplary data LINK to the expected format. Application of this function is thus not mandatory if you want to transform your data manually or, if your dat are not formated as in the example data.
 #'
 #'
-#' @param dat Untransformed data table as shown in the example.
+#' @param dat Data frame formated as shown in the example (exemplary_data.xlsx).
 #' @param uncertainty Indicates whether the uncertainty shall be repesented by SE or SD. Please be aware that the respective chosen uncertainty must be included in the data. Best would be to consider the format of the exemplary data (database.xlsx) in the GitLab.
 #' @param expVAL Indicates how the expected Value should be represented.
 #' @return An initialized landUse object ready for initScenario.
+#' @examples
+#' require(xlsx)
 
 #' @import dplyr
 #' @importFrom stats na.omit

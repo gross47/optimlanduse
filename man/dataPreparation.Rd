@@ -2,12 +2,12 @@
 % Please edit documentation in R/dataPreparation.R
 \name{dataPreparation}
 \alias{dataPreparation}
-\title{Preparation of the data for the robust optimization}
+\title{Transform the data to the expected format}
 \usage{
 dataPreparation(dat, uncertainty = "SE", expVAL = "mean")
 }
 \arguments{
-\item{dat}{Untransformed data table as shown in the example.}
+\item{dat}{Data frame formated as shown in the example (exemplary_data.xlsx).}
 
 \item{uncertainty}{Indicates whether the uncertainty shall be repesented by SE or SD. Please be aware that the respective chosen uncertainty must be included in the data. Best would be to consider the format of the exemplary data (database.xlsx) in the GitLab.}
 
@@ -17,5 +17,8 @@ dataPreparation(dat, uncertainty = "SE", expVAL = "mean")
 An initialized landUse object ready for initScenario.
 }
 \description{
-Preparation of the data for the robust optimization
+The data must suit to the specific expected optimLanduse format. This function provides possibility to easily transform data in the form of the exemplary data LINK to the expected format. Application of this function is thus not mandatory if you want to transform your data manually or, if your dat are not formated as in the example data.
+}
+\examples{
+require(xlsx)
 }
