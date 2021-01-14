@@ -20,5 +20,7 @@ An initialized landUse object ready for initScenario.
 The data must suit to the specific expected optimLanduse format. This function provides possibility to easily transform data in the form of the exemplary data LINK to the expected format. Application of this function is thus not mandatory if you want to transform your data manually or, if your dat are not formated as in the example data.
 }
 \examples{
-require(xlsx)
+require(readxl)
+dat <- read_xlsx(exampleData(), col_names = FALSE)
+dataPreparation(dat)
 }

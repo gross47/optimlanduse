@@ -16,7 +16,9 @@
 #' @param expVAL Indicates how the expected Value should be represented.
 #' @return An initialized landUse object ready for initScenario.
 #' @examples
-#' require(xlsx)
+#' require(readxl)
+#' dat <- read_xlsx(exampleData(), col_names = FALSE)
+#' dataPreparation(dat)
 
 #' @import dplyr
 #' @importFrom stats na.omit
