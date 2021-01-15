@@ -2,17 +2,23 @@
 % Please edit documentation in R/examples.R
 \name{exampleData}
 \alias{exampleData}
-\title{Import examplary data}
+\title{Attach examplary data}
 \usage{
 exampleData(fileName = "database.xlsx")
 }
 \arguments{
-\item{fileName}{Name of example file. See 'details' section for further explanation.}
+\item{fileName}{Name of example file. See 'details' section for further explanation of all implemented examples.}
+}
+\value{
+The path to the example file on your computer.
 }
 \description{
-optimLanduse comes bundled with exemplary land-use options and indicator values. The
+optimLanduse comes bundled with exemplary data for land-use optimization. The
 files can also be found on your computer in the package folder `inst/extdata`. Aim is to
-enable quick application of the package and to view the expected structure of the data.
+enable quick application of the package for demonstaration and to view the expected structure
+of the data. Consider also the
+\href{https://gitlab.gwdg.de/forest_economics_goettingen/optimlanduse}{GitLab project page} for
+exemplary application of the package.
 }
 \details{
 \emph{database.xlsx} and \emph{databaseShrinked.xlsx} are exerpts grom Claff et al .... tbd. Volker
@@ -25,4 +31,5 @@ path <- exampleData("database.xlsx")
 read_xlsx(path, col_names = FALSE)
 path <- exampleData("databaseShrinked.xlsx")
 read_xlsx(path, col_names = FALSE)
+
 }

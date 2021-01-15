@@ -6,42 +6,46 @@
 
 #' Initialize the robust optimization
 #'
-#' The function is used to initialize a \emph{optimLanduse} S3 object from the formated
-#' coefficients table.
+#' The function is used to initialize an \emph{optimLanduse} S3 object on thr basis of the formated
+#' scenario table.
 #'
 #' The expected format is explained in the example on
 #'  \href{https://gitlab.gwdg.de/forest_economics_goettingen/optimlanduse}{GitLab}.
 #'  Usage of \code{\link{dataPreparation}} is recommended to ensure that
 #'  the format requirements are met.
 #'
-#'  Aim of the separation of the initialization and the optimization is to save
-#'  calculation time. The separated function calls allow the user to perform multiple
-#'  optimization-runs from one initialized object. This could save time in batch
-#'  applications.
-
+#'  Aim of the separation of the initialization and the optimization is to provide
+#'  opportunity to save
+#'  calculation time in batch analysis. The separated function calls allow the
+#'  user to perform multiple
+#'  optimizations from one initialized object. This could save time in scenario or
+#'  sensitivity analysis.
 #'
-#' @param coefTable Coefficient table in the specific optimLanduse format.
-#' @param uValue u Value.
+#' @param coefTable Coefficient table in the expected \emph{optimLanduse} format.
+#' @param uValue \emph{u} Value. The unvertainty (standard deviation or standard error) is
+#' multiplied with the u value. The value therefore enables scenario analyses with differing
+#' uncertainties in relation to indicator values.
 #' @param optimisticRule Either \emph{expectation} or \emph{uncertaintyAdjustedExpectation}.
-#' It indicates whether the optimistic outcomes of an indicator are directly
-#' reflected by the expectation or if the indicator is adjusted by expectation +
-#' uncertainty in case "more is better", expectation - uncertainty respectively when "less is better".
+#' The rule indicates whether the optimistic outcomes of an indicator are directly
+#' reflected by their expectations or if the indicator is calculated as expectation +
+#' uncertainty when "more is better", expectation - uncertainty respectively when "less is better".
 #' @param fixDistance tbd. Kai B.
 #' @return An initialized optimLanduse S3 object ready for optimization.
 #' @examples
 #' require(readxl)
-#' dat <- read_xlsx(exampleData("databaseShrinked.xlsx"), col_names = FALSE)
+#' dat <- read_xlsx(exampleData("databaseShrinked.xlsx"),
+#'                  col_names = FALSE)
 #' dat <- dataPreparation(dat)
-#' init <- initScenario(dat, uValue = 2, optimisticRule = "expectation", fixDistance = NULL)
-
-
+#' init <- initScenario(dat, uValue = 2,
+#'                      optimisticRule = "expectation",
+#'                      fixDistance = NULL)
 
 #' @import dplyr
 #' @import tidyr
 #' @importFrom stats setNames
 #'
 #' @export
-initScenario <- function(coefTable,  uValue = 3, optimisticRule = "expectation", fixDistance = NULL) {
+initScenario <- function(coefTable,  uValue = 1, optimisticRule = "expectation", fixDistance = NULL) {
 
   #-----------------------------------------#
   #### Check the format of the coefTable ####

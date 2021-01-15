@@ -6,26 +6,29 @@
 # Maintainer: Kai Husmann
 # Developer: Kai Husmann, Kai Bödecker, Volker von Groß
 
-#' Transform the data to the expected format
+#' Transform data to the expected format
 #'
-#' The data must suit to the specific expected optimLanduse format. This function
+#' The data must suit to the specific expected optimLanduse format priot
+#' initialization and optimiation. This function
 #' provides possibility to easily transform data from the commonly used form
 #' of the exemplary data
 #' \code{\link{exampleData}} into to the expected format. Application of this function
 #' is thus not mandatory
 #' if you want to transform your data yourself or, if your data are not formated like
-#' in the example data.
+#' in the example data. The application example on the
+#' \href{https://gitlab.gwdg.de/forest_economics_goettingen/optimlanduse}{GitLab project page}
+#' provides information about the expected structure.
 #'
-#'
-#' @param dat Data frame formated as shown in the examples \code{\link{exampleData}}.
+#' @param dat Data frame or tibble in the format of the \code{\link{exampleData}}.
 #' @param uncertainty Indicates whether the uncertainty shall be repesented by standard
 #' error or standard deviation. Please be aware that the respective chosen uncertainty must
-#' be covered in the data. Best would be to consider the format of the exemplary data.
+#' be available in the data. Empty cells are considered as NA.
 #' @param expVAL Indicates the column name of the expected value.
-#' @return A formated table with land-use options and indicator values ready for initialization via \code{\link{initScenario}}.
+#' @return A formated coefficients table with land-use options and indicator values ready for initialization via \code{\link{initScenario}}.
 #' @examples
 #' require(readxl)
-#' dat <- read_xlsx(exampleData("databaseShrinked.xlsx"), col_names = FALSE)
+#' dat <- read_xlsx(exampleData("databaseShrinked.xlsx"),
+#'                  col_names = FALSE)
 #' dat <- dataPreparation(dat)
 
 #' @import dplyr
@@ -33,7 +36,7 @@
 #' @importFrom utils type.convert
 
 #' @export
-dataPreparation <- function(dat, uncertainty = "SE", expVAL = "mean"){   # added expected value
+dataPreparation <- function(dat, uncertainty = "SE", expVAL = "mean"){
 
     ## Convert input Data to dat.final ##
     ## Filter all Rows with only NA ##

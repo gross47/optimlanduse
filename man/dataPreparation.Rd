@@ -2,33 +2,37 @@
 % Please edit documentation in R/dataPreparation.R
 \name{dataPreparation}
 \alias{dataPreparation}
-\title{Transform the data to the expected format}
+\title{Transform data to the expected format}
 \usage{
 dataPreparation(dat, uncertainty = "SE", expVAL = "mean")
 }
 \arguments{
-\item{dat}{Data frame formated as shown in the examples \code{\link{exampleData}}.}
+\item{dat}{Data frame or tibble in the format of the \code{\link{exampleData}}.}
 
 \item{uncertainty}{Indicates whether the uncertainty shall be repesented by standard
 error or standard deviation. Please be aware that the respective chosen uncertainty must
-be covered in the data. Best would be to consider the format of the exemplary data.}
+be available in the data. Empty cells are considered as NA.}
 
 \item{expVAL}{Indicates the column name of the expected value.}
 }
 \value{
-A formated table with land-use options and indicator values ready for initialization via \code{\link{initScenario}}.
+A formated coefficients table with land-use options and indicator values ready for initialization via \code{\link{initScenario}}.
 }
 \description{
-The data must suit to the specific expected optimLanduse format. This function
+The data must suit to the specific expected optimLanduse format priot
+initialization and optimiation. This function
 provides possibility to easily transform data from the commonly used form
 of the exemplary data
 \code{\link{exampleData}} into to the expected format. Application of this function
 is thus not mandatory
 if you want to transform your data yourself or, if your data are not formated like
-in the example data.
+in the example data. The application example on the
+\href{https://gitlab.gwdg.de/forest_economics_goettingen/optimlanduse}{GitLab project page}
+provides information about the expected structure.
 }
 \examples{
 require(readxl)
-dat <- read_xlsx(exampleData("databaseShrinked.xlsx"), col_names = FALSE)
+dat <- read_xlsx(exampleData("databaseShrinked.xlsx"),
+                 col_names = FALSE)
 dat <- dataPreparation(dat)
 }
