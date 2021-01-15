@@ -6,20 +6,22 @@
 \usage{
 initScenario(
   coefTable,
-  uValue = 3,
+  uValue = 1,
   optimisticRule = "expectation",
   fixDistance = NULL
 )
 }
 \arguments{
-\item{coefTable}{Coefficient table in the specific optimLanduse format.}
+\item{coefTable}{Coefficient table in the expected \emph{optimLanduse} format.}
 
-\item{uValue}{u Value.}
+\item{uValue}{\emph{u} Value. The unvertainty (standard deviation or standard error) is
+multiplied with the u value. The value therefore enables scenario analyses with differing
+uncertainties in relation to indicator values.}
 
 \item{optimisticRule}{Either \emph{expectation} or \emph{uncertaintyAdjustedExpectation}.
-It indicates whether the optimistic outcomes of an indicator are directly
-reflected by the expectation or if the indicator is adjusted by expectation +
-uncertainty in case "more is better", expectation - uncertainty respectively when "less is better".}
+The rule indicates whether the optimistic outcomes of an indicator are directly
+reflected by their expectations or if the indicator is calculated as expectation +
+uncertainty when "more is better", expectation - uncertainty respectively when "less is better".}
 
 \item{fixDistance}{tbd. Kai B.}
 }
@@ -27,8 +29,8 @@ uncertainty in case "more is better", expectation - uncertainty respectively whe
 An initialized optimLanduse S3 object ready for optimization.
 }
 \description{
-The function is used to initialize a \emph{optimLanduse} S3 object from the formated
-coefficients table.
+The function is used to initialize an \emph{optimLanduse} S3 object on thr basis of the formated
+scenario table.
 }
 \details{
 The expected format is explained in the example on
@@ -36,14 +38,19 @@ The expected format is explained in the example on
  Usage of \code{\link{dataPreparation}} is recommended to ensure that
  the format requirements are met.
 
- Aim of the separation of the initialization and the optimization is to save
- calculation time. The separated function calls allow the user to perform multiple
- optimization-runs from one initialized object. This could save time in batch
- applications.
+ Aim of the separation of the initialization and the optimization is to provide
+ opportunity to save
+ calculation time in batch analysis. The separated function calls allow the
+ user to perform multiple
+ optimizations from one initialized object. This could save time in scenario or
+ sensitivity analysis.
 }
 \examples{
 require(readxl)
-dat <- read_xlsx(exampleData("databaseShrinked.xlsx"), col_names = FALSE)
+dat <- read_xlsx(exampleData("databaseShrinked.xlsx"),
+                 col_names = FALSE)
 dat <- dataPreparation(dat)
-init <- initScenario(dat, uValue = 2, optimisticRule = "expectation", fixDistance = NULL)
+init <- initScenario(dat, uValue = 2,
+                     optimisticRule = "expectation",
+                     fixDistance = NULL)
 }
