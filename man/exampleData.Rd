@@ -21,7 +21,7 @@ of the data. Consider also the
 exemplary application of the package.
 }
 \details{
-\emph{database.xlsx} and \emph{databaseShrinked.xlsx} are exerpts grom Claff et al .... tbd. Volker
+\emph{database.xlsx} and \emph{databaseShrinked.xlsx} are excerpts grom Claff et al .... tbd. Volker
 }
 \examples{
 require(readxl)

@@ -30,7 +30,6 @@
 #' buffers uncertainties. \emph{Nat Commun} \strong{7}, 11877. \url{https://doi.org/10.1038/ncomms11877}
 
 
-
 #' @import lpSolveAPI
 
 #' @export
