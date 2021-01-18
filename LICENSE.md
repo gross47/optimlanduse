@@ -1,6 +1,6 @@
 # MIT License
 
-Copyright (c) 2021 Kai Bödecker, Jasper Fuchs, Volker von Groß, Kai Husmann
+Copyright (c) 2021 Kai Husmann
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
