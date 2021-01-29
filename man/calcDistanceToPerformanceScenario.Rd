@@ -20,6 +20,7 @@ tbd. translate
 \examples{
 require(ggplot2)
 require(readxl)
+
 dat <- read_xlsx(exampleData("databaseShrinked.xlsx"),
                  col_names = FALSE)
 dat <- dataPreparation(dat)
@@ -28,6 +29,8 @@ init <- initScenario(dat, uValue = 2,
                      fixDistance = NULL)
 result <- solveScenario(x = init)
 performance <- calcDistanceToPerformanceScenario(result)
+
+# Visualize the distance
 
 ggplot(performance$scenarioTable,
        aes(x = indicator,

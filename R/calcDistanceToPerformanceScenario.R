@@ -29,6 +29,7 @@
 #' performance <- calcDistanceToPerformanceScenario(result)
 #'
 #' # Visualize the distance
+#'
 #' ggplot(performance$scenarioTable,
 #'        aes(x = indicator,
 #'            y = distanceToTargetPerformance,
