@@ -18,6 +18,7 @@
 #' @examples
 #' require(ggplot2)
 #' require(readxl)
+#'
 #' dat <- read_xlsx(exampleData("databaseShrinked.xlsx"),
 #'                  col_names = FALSE)
 #' dat <- dataPreparation(dat)
@@ -27,6 +28,7 @@
 #' result <- solveScenario(x = init)
 #' performance <- calcDistanceToPerformanceScenario(result)
 #'
+#' # Visualize the distance
 #' ggplot(performance$scenarioTable,
 #'        aes(x = indicator,
 #'            y = distanceToTargetPerformance,
