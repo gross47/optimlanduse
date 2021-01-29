@@ -14,6 +14,30 @@ An optimized optimLanduse object with attached portfolio performance.
 }
 \description{
 The function calculates and attaches the portfolio performance and distance to target. See Gosling et al. Formula S5 (supplementary).
+In der Abbildung werden die Beta-Werte nach ihrem Indikator auf der X-Achse gruppiert. Jedes Beta beschreibt den relativen Anteil zum maximal Erreichbaren (dem "target") innerhalb seines Indikators, bei der aktuellen Landnutzungsverteilung und dem gesetzten Unsicherheits-Scenario. Das niedrigste Beta aller Indikatoren (markiert durch die rote, horizontale Linie) garantiert, dass bei einem Worst-Case-Scenario, mindestens dieser Anteil über alle Indikatoren hinweg erreicht wird. Durch die solveScenario() Funktion wird die garantierte Performance maximiert, bzw. die Distanz zum maximal Möglichen minimiert.
+tbd. translate
+}
+\examples{
+require(ggplot2)
+require(readxl)
+dat <- read_xlsx(exampleData("databaseShrinked.xlsx"),
+                 col_names = FALSE)
+dat <- dataPreparation(dat)
+init <- initScenario(dat, uValue = 2,
+                     optimisticRule = "expectation",
+                     fixDistance = NULL)
+result <- solveScenario(x = init)
+performance <- calcDistanceToPerformanceScenario(result)
+
+ggplot(performance$scenarioTable,
+       aes(x = indicator,
+           y = distanceToTargetPerformance,
+           color = indicator)) +
+geom_point() +
+geom_hline(yintercept =
+           min(result$scenarioTable$distanceToTargetPerformance),
+          linetype = "dashed", color = "red") +
+ylim(0, 1)
 }
 \references{
 Gosling, E., Reith, E., Knoke T., Gerique, A., Paul, C. (2020): Exploring
