@@ -120,8 +120,10 @@ library(dplyr)
 library(tidyr) 
 
 # Daten einlesen
+# Es ist zwingend eine "indicator" und eine "direction" Spalte noetig
+
 dat <- read_xlsx(exampleData("databaseShrinked.xlsx"), col_names = FALSE)
-dataPreparation(dat)
+dat <- dataPreparation(dat, uncertainty = "SE", expVAL = "mean")
 
 # Optimierung initialisieren
 init <- initScenario(dat, uValue = 2, optimisticRule = "expectation", fixDistance = NULL)
@@ -146,7 +148,7 @@ library(readxl)
 
 # Daten einlesen
 dat <- read_xlsx(exampleData("databaseShrinked.xlsx"), col_names = FALSE)
-dataPreparation(dat)
+dat <- dataPreparation(dat, uncertainty = "SE", expVAL = "mean")
 
 # Sequenz definieren
 u <- seq(1, 5, 1)
@@ -164,7 +166,7 @@ loopDf <- data.frame(u = u, matrix(NA, nrow = length(u), ncol = 1 + length(uniqu
 names(loopDf) <- c("u", "beta", unique(dat$landUse))
 
 for(i in u) {
-  init <- initScenario(dat, uValue = i, optimisticRule = "expectation")
+  init <- initScenario(dat, uValue = i, optimisticRule = "expectation", fixDistance = NULL)
   result <- solveScenario(x = init)
   loopDf[loopDf$u == i,] <- c(i, result$beta, as.matrix(result$landUse))
 }
@@ -173,7 +175,7 @@ for(i in u) {
 applyDf <- data.frame(u = u)
 
 applyFun <- function(x) {
-  init <- initScenario(dat, uValue = x, optimisticRule = "expectation")
+  init <- initScenario(dat, uValue = x, optimisticRule = "expectation", fixDistance = NULL)
   result <- solveScenario(x = init)
   return(c(result$beta, as.matrix(result$landUse)))
 }
@@ -192,7 +194,7 @@ library(doParallel)
 
 # Daten einlesen
 dat <- read_xlsx(exampleData("databaseShrinked.xlsx"), col_names = FALSE)
-dataPreparation(dat)
+dat <- dataPreparation(dat, uncertainty = "SE", expVAL = "mean")
 
 # Kerne initialisieren, bspw. 8 Kerne
 registerDoParallel(8)
@@ -202,10 +204,45 @@ u <- seq(1, 5, 1)
 
 # Batch initialisieren und durchführen
 loopDf1 <- foreach(i = u, .combine = rbind) %dopar% {
-  init <- initScenario(dat, uValue = i, optimisticRule = "expectation")
+  init <- initScenario(dat, uValue = i, optimisticRule = "expectation", fixDistance = NULL)
   result <- solveScenario(x = init)
   c(i, result$beta, as.matrix(result$landUse))
 }
 # Falls die Kerne wieder freigegeben werden sollen
 stopImplicitCluster()
+```
+
+Batch Anwendung für mehrere Unsicherheiten und fixierter Distanz auf dem höchsten Unsicherheits-Level u
+
+``` r
+# Pakete laden
+require(optimLanduse)
+require(dplyr)  
+require(readxl)
+require(lpSolveAPI)  
+
+# Daten einlesen
+dat <- read_xlsx("database (shrinked).xlsx", col_names = FALSE)
+dat <- dataPreparation(dat = dat, uncertainty = "SE")
+
+# Sequenz definieren
+u <- c(5:1) # Wichtig: rueckwaerts!
+
+# Batch vorbereiten
+applyDf <- data.frame(u = u)
+dist <- NULL
+applyFun <- function(x) {
+  init <- initScenario(dat, uValue = x, optimisticRule = "expectation",
+                       fixDistance = dist)
+  result <- optimLanduse::solveScenario(x = init)
+  dist <<- result$distance
+  return(c(result$beta,
+           as.matrix(result$landUse)))
+}
+
+# Run & Ergebnis
+applyDf <- cbind(applyDf,
+                 t(apply(applyDf, 1, applyFun))) %>% 
+                 rename_at(vars(factor(1:(length(unique(dat$landUse))+1))),
+                           ~ c("beta",unique(dat$landUse))) 
 ```
