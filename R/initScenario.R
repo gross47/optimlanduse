@@ -62,7 +62,14 @@ initScenario <- function(coefTable,  uValue = 1, optimisticRule = "expectation",
     all(indicatorNames %in% x)
   }
 
-  if (!coefTable %>% group_by(landUse) %>% summarise(checkLanduse = testLandUseIndicators(indicator)) %>% pull(checkLanduse) %>% all()) {
+
+  # checkLanduseTemp <- coefTable %>% group_by(landUse) %>%
+  #   summarise(checkLanduse = testLandUseIndicators(indicator))
+
+  checkLanduseTemp <- stats::aggregate(indicator ~ landUse, FUN = testLandUseIndicators, data = coefTable)
+
+
+  if (!all(checkLanduseTemp$indicator)) {
     stop ("At least one indicator is not available for at least one land-use option.")
   }
   if (!length(indicatorNames) * length(unique(coefTable$landUse)) == nrow(coefTable)) {
@@ -96,7 +103,7 @@ initScenario <- function(coefTable,  uValue = 1, optimisticRule = "expectation",
   #--------------------#
 
   scenarioTableTemp1 <- scenarioTable
-  scenarioTable <- merge(scenarioTable, unique(coefTable[, c("indicator","direction")]), by = "indicator")
+  scenarioTable <- merge(scenarioTable, unique(coefTable[, c("indicator", "direction")]), by = "indicator")
   if(!dim(scenarioTableTemp1)[1] == dim(scenarioTable)[1]) {cat("Error: Direction mising or wrong.")}
 
   #---------------------------------------------#
@@ -107,11 +114,19 @@ initScenario <- function(coefTable,  uValue = 1, optimisticRule = "expectation",
 
   # Das muss noch umgeschrieben werden, da funs "deprecated" ist: Am besten ganz ohne tidy ...
 
-  spread1 <- coefTable %>% select(-indicatorUncertainty) %>% spread(key = landUse, value = indicatorValue)
+  # spread1 <- coefTable %>% select(-indicatorUncertainty) %>%
+  #   spread(key = landUse, value = indicatorValue)
+  spread1 <- tidyr::spread(data = coefTable[, !names(coefTable) == "indicatorUncertainty"],
+                    key = landUse,
+                    value = "indicatorValue")
   names(spread1)[names(spread1) %in% eval(landUse)] <- paste0("mean", names(spread1)[names(spread1) %in% eval(landUse)])
 
-  spread2 <- coefTable %>% select(-indicatorValue) %>% spread(key = landUse, value = indicatorUncertainty)
+  #spread2a <- coefTable %>% select(-indicatorValue) %>% spread(key = landUse, value = indicatorUncertainty)
+  spread2 <- tidyr::spread(data = coefTable[, !names(coefTable) == "indicatorValue"],
+                     key = landUse,
+                     value = "indicatorUncertainty")
   names(spread2)[names(spread2) %in% eval(landUse)] <- paste0("sem", names(spread2)[names(spread2) %in% eval(landUse)])
+
 
   for(i in landUse) {
     byIndicator <- c("indicator")

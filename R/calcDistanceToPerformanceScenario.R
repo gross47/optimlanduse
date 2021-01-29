@@ -70,9 +70,22 @@ calcDistanceToPerformanceScenario <- function(x) {
   #------------------------------------------#
 
   # See. e.g. Gosling et al. Eq. 11
-  x$scenarioTable <- x$scenarioTable %>% mutate(distanceToTargetPerformance = 1 - ifelse(direction == "more is better",
-                                                                                           ((portfolioPerformance - minAdjSem) / diffAdjSem),
-                                                                                           ((maxAdjSem - portfolioPerformance) / diffAdjSem)))
+  # x$scenarioTable <- x$scenarioTable %>%
+  #   mutate(distanceToTargetPerformance = 1 - ifelse(direction == "more is better",
+  #                                                   ((portfolioPerformance - minAdjSem) / diffAdjSem),
+  #                                                   ((maxAdjSem - portfolioPerformance) / diffAdjSem)))
+
+  x$scenarioTable[x$scenarioTable$direction == "more is better", "distanceToTargetPerformance"] <-
+    1 - (x$scenarioTable$portfolioPerformance[x$scenarioTable$direction == "more is better"] -
+           x$scenarioTable$minAdjSem[x$scenarioTable$direction == "more is better"]) /
+    x$scenarioTable$diffAdjSem[x$scenarioTable$direction == "more is better"]
+
+  x$scenarioTable[x$scenarioTable$direction == "less is better", "distanceToTargetPerformance"] <-
+    1 - (x$scenarioTable$maxAdjSem[x$scenarioTable$direction == "less is better"] -
+           x$scenarioTable$portfolioPerformance[x$scenarioTable$direction == "less is better"]) /
+    x$scenarioTable$diffAdjSem[x$scenarioTable$direction == "less is better"]
+
+  if(any(is.na(x$scenarioTable$distanceToTargetPerformance))) {cat("Warning: Not all performances calculated.")}
 
   x$status <- "optimized - information updated" # function will show an Error if it is run twice
 
