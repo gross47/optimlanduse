@@ -42,7 +42,7 @@
 
 #' @importFrom utils type.convert
 
-#'@export
+#' @export
 calcDistanceToPerformanceScenario <- function(x) {
   # tbd. Umschreiben: den Scenario Table einmal am Anfang in eine Variable schreiben, um das x$ zu vermeiden. Diese 3 Stufen Indizierung wird vom rCheck angekreidet.
   # Oder noch besser: Ganz ohne dpyr
