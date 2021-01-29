@@ -3,7 +3,7 @@
 ##--#####################################################--##
 # Wed Jan 29 16:19:22 2020 ------------------------------
 # Maintainer: Kai Husmann
-# Developer: Kai Husmann, Kai Bödecker
+# Developer: Kai Husmann, Kai Bödeker
 
 #' Attach portfolio performance and distance to target tbd. Kai B.
 #'

@@ -35,12 +35,15 @@ defineObjectiveCoefficients <- function(scenarioTable) {
 
 #' @noRd
 defineConstraintCoefficients <- function (scenarioTable) {
-  tempTableMore <- scenarioTable %>% filter(direction == "more is better") %>%
+
+  tempTableMore <- scenarioTable[scenarioTable$direction == "more is better", ]
+  tempTableMore <- tempTableMore %>%
     mutate(across(starts_with("adjSem"),
                   ~{(. - minAdjSem) / diffAdjSem},
                   .names = "{.col}_modified"))
 
-  tempTableLess <- scenarioTable %>% filter(direction == "less is better") %>%
+  tempTableLess <- scenarioTable[scenarioTable$direction == "less is better", ]
+  tempTableLess <- tempTableLess %>%
     mutate(across(starts_with("adjSem"),
                   ~{(maxAdjSem - .) / diffAdjSem},
                   .names = "{.col}_modified"))

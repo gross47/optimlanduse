@@ -16,9 +16,9 @@ Authors@R:
            role = "aut",
            email = "jasper.fuchs@uni-goettingen.de"),
     person(given = "Kai",
-           family = "Bödecker",
+           family = "Bödeker",
            role = "aut",
-           email = "kai.boedecker@tum.de")
+           email = "kai.boedeker@tum.de")
            )
 Description: Robust land-use optimization using stepwise linear iterative optimizations.
 License: MIT + file LICENSE
