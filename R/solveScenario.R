@@ -33,17 +33,18 @@
 #' @import lpSolveAPI
 
 #' @export
-solveScenario <- function (x, digitsPrecision = 4, lowerBound = 0, upperBound = 1) {
+solveScenario <- function (x, digitsPrecision = 4,
+                           lowerBound = 0, upperBound = 1) {
 
-  coefObjective <- x$coefObjective
-  piConstraintCoefficients <- x$coefConstraint
+  coefObjective <- x$coefObjective # Summen aus aller Scenarien der LandUse-Optionen (s. helper Funktion)
+  piConstraintCoefficients <- x$coefConstraint # relativie Werte (m. Distanz als Divisor)
   #tbd. Die Variablen sollte ich noch umbenennen. Von piConstraintCoefficients zu coefConstraint
 
   precision <- 1 / 10^(digitsPrecision)
-  constraintCoef <- rbind(rep(1, length(coefObjective)), piConstraintCoefficients)
+  # constraintCoef <- rbind(rep(1, length(coefObjective)), piConstraintCoefficients)
   constraintDirection <- c("==", rep(">=", dim(piConstraintCoefficients)[1]))
-  piConstraintRhs <- c(0, .6, 1)
-  piConstraintRhsFeasible <- rep(FALSE, 3)
+  piConstraintRhs <- c(0, .6, 1) # ein Vektor mit Werten für "beta", der immer enger und enger wird
+  # piConstraintRhsFeasible <- rep(FALSE, 3)
   emergencyStop <- 1000
 
   # Init lpa Object
@@ -72,6 +73,7 @@ solveScenario <- function (x, digitsPrecision = 4, lowerBound = 0, upperBound = 
   lpSolveAPI::set.rhs(lprec = lpaObj, b = c(1, rep(piConstraintRhs[2], dim(piConstraintCoefficients)[1])))
 
   statusOpt <- lpSolveAPI::solve.lpExtPtr(lpaObj)
+  # ein gutes Beispiel zum Lernen: https://rpubs.com/nayefahmad/linear-programming
 
   # Stepwise approximation loop
   while (counter < emergencyStop) {
@@ -80,7 +82,7 @@ solveScenario <- function (x, digitsPrecision = 4, lowerBound = 0, upperBound = 
     counter <- counter + 1
     #if (refreshCoef) {
     # tbd. Bisher platzhalter.
-
+    # Hier könnten dynamische Parameter eingegeben werden
     #}
 
     if (statusOpt == 0) {

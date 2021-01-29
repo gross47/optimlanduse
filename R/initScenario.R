@@ -173,12 +173,16 @@ initScenario <- function(coefTable,  uValue = 1, optimisticRule = "expectation",
     scenarioTable[, c("minAdjSem", "maxAdjSem", "diffAdjSem")] <-
       apply(scenarioTable[, startsWith(names(scenarioTable), "adjSem")], 1,
             function(x) {c(min(x), max(x), (max(x) - min(x)))}) %>% t()
-  } else if (length(fixDistance) == dim(scenarioTable)[1]) {
-    scenarioTable[, c("minAdjSem", "maxAdjSem")] <-
-    apply(scenarioTable[, startsWith(names(scenarioTable), "adjSem")], 1,
-          function(x) {c(min(x), max(x))}) %>% t()
-    scenarioTable$diffAdjSem <- fixDistance
-  } else {stop("The dimension of the fixed distance does not fit the dimension of the scenario table.")}
+  } else if (dim(fixDistance)[1] == dim(scenarioTable)[1] &&
+             length(fixDistance)==2) {
+    scenarioTable[, c("minAdjSem", "maxAdjSem")] <- fixDistance
+    # scenarioTable[, c("minAdjSem", "maxAdjSem")] <-
+    # apply(scenarioTable[, startsWith(names(scenarioTable), "adjSem")], 1,
+    #       function(x) {c(min(x), max(x))}) %>% t()
+    scenarioTable$diffAdjSem <- scenarioTable$maxAdjSem - scenarioTable$minAdjSem
+  } else {stop(paste("The dimension of the 'fixDistance' (min and max) must contain: 2 columns and",
+                     dim(scenarioTable)[1], "rows."))}
+
 
 
   #-------------------------------------------------------------#
@@ -199,7 +203,8 @@ initScenario <- function(coefTable,  uValue = 1, optimisticRule = "expectation",
                   scenarioTable = scenarioTable,
                   coefObjective = coefObjective,
                   coefConstraint = constraintCoefficients,
-                  distance = scenarioTable$diffAdjSem,
+                  # distance = scenarioTable$diffAdjSem,
+                  distance = scenarioTable[, c("minAdjSem", "maxAdjSem")],
                   status = "initialized",
                   beta = NA,
                   landUse = setNames(data.frame(matrix(rep(NA, length(landUse)), ncol = length(landUse), nrow = 1)), landUse),
