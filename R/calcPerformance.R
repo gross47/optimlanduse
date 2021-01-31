@@ -7,9 +7,18 @@
 
 #' Attach portfolio performance and distance to target tbd. Kai B.
 #'
-#' The function calculates and attaches the portfolio performance and distance to target. See Gosling et al. Formula S5 (supplementary).
-#' In der Abbildung werden die Beta-Werte nach ihrem Indikator auf der X-Achse gruppiert. Jedes Beta beschreibt den relativen Anteil zum maximal Erreichbaren (dem "target") innerhalb seines Indikators, bei der aktuellen Landnutzungsverteilung und dem gesetzten Unsicherheits-Scenario. Das niedrigste Beta aller Indikatoren (markiert durch die rote, horizontale Linie) garantiert, dass bei einem Worst-Case-Scenario, mindestens dieser Anteil über alle Indikatoren hinweg erreicht wird. Durch die solveScenario() Funktion wird die garantierte Performance maximiert, bzw. die Distanz zum maximal Möglichen minimiert.
-#' tbd. translate
+#' The function calculates and attaches the portfolio performance.
+#' For a comprehensive interpretation the beta values have to be grouped by
+#' their indicator in a plot  (see Example).
+#' Each beta describes the relative proportion to the maximum achievable
+#' (the "target") within its indicator, given the current land use distribution
+#' and the uncertainty scenario set. The lowest beta of all indicators
+#' guarantees that under a worst-case scenario, at least this proportion will be
+#' achieved across all indicators. The solveScenario() function maximizes the
+#' guaranteed performance, or minimizes the distance to the maximum possible.
+#'
+#' For further information see Gosling et al. Formula S5 (supplementary).
+#'
 #' @param x An optimized optimLanduse object.
 #' @return An optimized optimLanduse object with attached portfolio performance.
 #' @references Gosling, E., Reith, E., Knoke T., Gerique, A., Paul, C. (2020): Exploring
@@ -26,7 +35,7 @@
 #'                      optimisticRule = "expectation",
 #'                      fixDistance = NULL)
 #' result <- solveScenario(x = init)
-#' performance <- calcDistanceToPerformanceScenario(result)
+#' performance <- calcPerformance(result)
 #'
 #' # Visualize the distance
 #'
@@ -43,7 +52,7 @@
 #' @importFrom utils type.convert
 
 #' @export
-calcDistanceToPerformanceScenario <- function(x) {
+calcPerformance <- function(x) {
   # tbd. Umschreiben: den Scenario Table einmal am Anfang in eine Variable schreiben, um das x$ zu vermeiden. Diese 3 Stufen Indizierung wird vom rCheck angekreidet.
   # Oder noch besser: Ganz ohne dpyr
 
