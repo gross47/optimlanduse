@@ -222,8 +222,8 @@ require(readxl)
 require(lpSolveAPI)  
 
 # Daten einlesen
-dat <- read_xlsx("database (shrinked).xlsx", col_names = FALSE)
-dat <- dataPreparation(dat = dat, uncertainty = "SE")
+dat <- read_xlsx(exampleData("databaseShrinked.xlsx"), col_names = FALSE)
+dat <- dataPreparation(dat, uncertainty = "SE", expVAL = "mean")
 
 # Sequenz definieren
 u <- c(5:1) # Wichtig: rueckwaerts!
