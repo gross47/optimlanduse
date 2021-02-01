@@ -3,13 +3,13 @@
 ##--#####################################################--##
 # Wed Jan 29 16:19:22 2020 ------------------------------
 # Maintainer: Kai Husmann
-# Developer: Kai Husmann, Kai Bödeker
+# Developer: Kai Bödeker, Kai Husmann
 
-#' Attach portfolio performance and distance to target tbd. Kai B.
+#' Attach portfolio performance and distance to target
 #'
 #' The function calculates and attaches the portfolio performance.
 #' For a comprehensive interpretation the beta values have to be grouped by
-#' their indicator in a plot  (see Example).
+#' their indicator in a plot  (see example).
 #' Each beta describes the relative proportion to the maximum achievable
 #' (the "target") within its indicator, given the current land use distribution
 #' and the uncertainty scenario set. The lowest beta of all indicators
@@ -17,7 +17,7 @@
 #' achieved across all indicators. The solveScenario() function maximizes the
 #' guaranteed performance, or minimizes the distance to the maximum possible.
 #'
-#' For further information see Gosling et al. Formula S5 (supplementary).
+#' For further information see the supplement of Gosling et al (2020), Formula S5.
 #'
 #' @param x An optimized optimLanduse object.
 #' @return An optimized optimLanduse object with attached portfolio performance.
@@ -53,7 +53,7 @@
 
 #' @export
 calcPerformance <- function(x) {
-  # tbd. Umschreiben: den Scenario Table einmal am Anfang in eine Variable schreiben, um das x$ zu vermeiden. Diese 3 Stufen Indizierung wird vom rCheck angekreidet.
+  # tbd. Umschreiben: den Scenario Table einmal am Anfang in eine Variable schreiben, um das x$ zu vermeiden.
   # Oder noch besser: Ganz ohne dpyr
 
   if(!all(names(x$scenarioTable[, startsWith(names(x$scenarioTable), "adj")]) ==

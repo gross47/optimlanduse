@@ -2,7 +2,7 @@
 % Please edit documentation in R/calcPerformance.R
 \name{calcPerformance}
 \alias{calcPerformance}
-\title{Attach portfolio performance and distance to target tbd. Kai B.}
+\title{Attach portfolio performance and distance to target}
 \usage{
 calcPerformance(x)
 }
@@ -15,7 +15,7 @@ An optimized optimLanduse object with attached portfolio performance.
 \description{
 The function calculates and attaches the portfolio performance.
 For a comprehensive interpretation the beta values have to be grouped by
-their indicator in a plot  (see Example).
+their indicator in a plot  (see example).
 Each beta describes the relative proportion to the maximum achievable
 (the "target") within its indicator, given the current land use distribution
 and the uncertainty scenario set. The lowest beta of all indicators
@@ -24,7 +24,7 @@ achieved across all indicators. The solveScenario() function maximizes the
 guaranteed performance, or minimizes the distance to the maximum possible.
 }
 \details{
-For further information see Gosling et al. Formula S5 (supplementary).
+For further information see the supplement of Gosling et al (2020), Formula S5.
 }
 \examples{
 require(ggplot2)

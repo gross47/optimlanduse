@@ -29,16 +29,15 @@ uncertainty when "more is better", expectation - uncertainty respectively when "
 An initialized optimLanduse S3 object ready for optimization.
 }
 \description{
-The function is used to initialize an \emph{optimLanduse} S3 object on thr basis of the formated
-scenario table.
-}
-\details{
-The expected format is explained in the example on
+The function is used to initialize an \emph{optimLanduse} S3 object on the
+basis of a coefficients table. Please note that the coefficients table must follow
+the \emph{optimLanduse} format. The expected format is explained in the example on
  \href{https://gitlab.gwdg.de/forest_economics_goettingen/optimlanduse}{GitLab}.
  Usage of \code{\link{dataPreparation}} is recommended to ensure that
  the format requirements are met.
-
- Aim of the separation of the initialization and the optimization is to provide
+}
+\details{
+Aim of the separation of the initialization and the optimization is to provide
  opportunity to save
  calculation time in batch analysis. The separated function calls allow the
  user to perform multiple

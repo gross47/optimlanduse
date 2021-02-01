@@ -9,9 +9,9 @@ dataPreparation(dat, uncertainty = "SE", expVAL = "mean")
 \arguments{
 \item{dat}{Data frame or tibble in the format of the \code{\link{exampleData}}.}
 
-\item{uncertainty}{Indicates whether the uncertainty shall be repesented by standard
-error or standard deviation. Please be aware that the respective chosen uncertainty must
-be available in the data. Empty cells are considered as NA.}
+\item{uncertainty}{Indicates the column name of the uncertainty in the data.
+Typical is "SE" for standard
+error or "SD" for standard deviation. Empty cells are considered as NA.}
 
 \item{expVAL}{Indicates the column name of the expected value.}
 }
@@ -21,10 +21,10 @@ A formated coefficients table with land-use options and indicator values ready f
 \description{
 The data must suit to the specific expected optimLanduse format priot
 initialization and optimiation. This function
-provides possibility to easily transform data from the commonly used form
+provides the possibility to easily transform data from the commonly used form
 of the exemplary data
 \code{\link{exampleData}} into to the expected format. Application of this function
-is thus not mandatory
+is not mandatory
 if you want to transform your data yourself or, if your data are not formated like
 in the example data. The application example on the
 \href{https://gitlab.gwdg.de/forest_economics_goettingen/optimlanduse}{GitLab project page}

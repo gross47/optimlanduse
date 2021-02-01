@@ -6,10 +6,9 @@
 
 #' Initialize the robust optimization
 #'
-#' The function is used to initialize an \emph{optimLanduse} S3 object on thr basis of the formated
-#' scenario table.
-#'
-#' The expected format is explained in the example on
+#' The function is used to initialize an \emph{optimLanduse} S3 object on the
+#' basis of a coefficients table. Please note that the coefficients table must follow
+#' the \emph{optimLanduse} format. The expected format is explained in the example on
 #'  \href{https://gitlab.gwdg.de/forest_economics_goettingen/optimlanduse}{GitLab}.
 #'  Usage of \code{\link{dataPreparation}} is recommended to ensure that
 #'  the format requirements are met.

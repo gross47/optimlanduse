@@ -11,9 +11,9 @@ solveScenario(x, digitsPrecision = 4, lowerBound = 0, upperBound = 1)
 
 \item{digitsPrecision}{Precision of the solution.}
 
-\item{lowerBound}{An optional vector lower bounds for the land-use options. Must be in the dimension of the land-use options if delivered.}
+\item{lowerBound}{Optional lower bounds for the land-use options. Must be 0 or a vector in the dimension of the land-use options.}
 
-\item{upperBound}{An optional vector upper bounds for the land-use options. Must be in the dimension of the land-use options if delivered.}
+\item{upperBound}{Optional upper bounds for the land-use options. Must be 1 or a vector in the dimension of the land-use options.}
 }
 \value{
 A solved landUse portfolio ready for export or further data processing.

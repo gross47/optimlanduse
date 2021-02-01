@@ -12,8 +12,8 @@
 #'
 #' @param x The initialized \emph{optimLanduse} object.
 #' @param digitsPrecision Precision of the solution.
-#' @param lowerBound An optional vector lower bounds for the land-use options. Must be in the dimension of the land-use options if delivered.
-#' @param upperBound An optional vector upper bounds for the land-use options. Must be in the dimension of the land-use options if delivered.
+#' @param lowerBound Optional lower bounds for the land-use options. Must be 0 or a vector in the dimension of the land-use options.
+#' @param upperBound Optional upper bounds for the land-use options. Must be 1 or a vector in the dimension of the land-use options.
 #' @return A solved landUse portfolio ready for export or further data processing.
 #' @examples
 #' require(readxl)
