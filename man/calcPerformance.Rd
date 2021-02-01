@@ -43,11 +43,11 @@ performance <- calcPerformance(result)
 
 ggplot(performance$scenarioTable,
        aes(x = indicator,
-           y = distanceToTargetPerformance,
+           y = performance,
            color = indicator)) +
 geom_point() +
 geom_hline(yintercept =
-           min(result$scenarioTable$distanceToTargetPerformance),
+           min(performance$scenarioTable$performance),
           linetype = "dashed", color = "red") +
 ylim(0, 1)
 }

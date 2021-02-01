@@ -41,11 +41,11 @@
 #'
 #' ggplot(performance$scenarioTable,
 #'        aes(x = indicator,
-#'            y = distanceToTargetPerformance,
+#'            y = performance,
 #'            color = indicator)) +
 #' geom_point() +
 #' geom_hline(yintercept =
-#'            min(result$scenarioTable$distanceToTargetPerformance),
+#'            min(performance$scenarioTable$performance),
 #'           linetype = "dashed", color = "red") +
 #' ylim(0, 1)
 
@@ -84,17 +84,17 @@ calcPerformance <- function(x) {
   #                                                   ((portfolioPerformance - minAdjSem) / diffAdjSem),
   #                                                   ((maxAdjSem - portfolioPerformance) / diffAdjSem)))
 
-  x$scenarioTable[x$scenarioTable$direction == "more is better", "distanceToTargetPerformance"] <-
+  x$scenarioTable[x$scenarioTable$direction == "more is better", "performance"] <-
     1 - (x$scenarioTable$portfolioPerformance[x$scenarioTable$direction == "more is better"] -
            x$scenarioTable$minAdjSem[x$scenarioTable$direction == "more is better"]) /
     x$scenarioTable$diffAdjSem[x$scenarioTable$direction == "more is better"]
 
-  x$scenarioTable[x$scenarioTable$direction == "less is better", "distanceToTargetPerformance"] <-
+  x$scenarioTable[x$scenarioTable$direction == "less is better", "performance"] <-
     1 - (x$scenarioTable$maxAdjSem[x$scenarioTable$direction == "less is better"] -
            x$scenarioTable$portfolioPerformance[x$scenarioTable$direction == "less is better"]) /
     x$scenarioTable$diffAdjSem[x$scenarioTable$direction == "less is better"]
 
-  if(any(is.na(x$scenarioTable$distanceToTargetPerformance))) {cat("Warning: Not all performances calculated.")}
+  if(any(is.na(x$scenarioTable$performance))) {cat("Warning: Not all performances calculated.")}
 
   x$status <- "optimized - information updated" # function will show an Error if it is run twice
 
