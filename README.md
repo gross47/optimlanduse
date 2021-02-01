@@ -83,7 +83,6 @@ In dem Paket wird ein robustes multikriterielles Optimierungsproblem so umformul
 Um die aktuellste stabile Version zu installieren, führen Sie den folgenden Code aus.
 
 ``` r
-
 ## Benötigte Pakete
 # Gestestet mit R Version 4.0.3. Bei älteren Versionen müssen die Pakete womöglich einzeln nacheinander installiert werden.
 packages <- c("devtools", "lpSolveAPI",
@@ -186,7 +185,7 @@ applyDf <- cbind(applyDf,
 
 Landnutzungsverteilung bei steigender Unsicherheit anzeigen
 
-```
+``` r
 # Show the result visually
 require(ggplot2)
 applyDf %>% gather(key = "land-use option", value = "land-use share", -u, -beta) %>%
