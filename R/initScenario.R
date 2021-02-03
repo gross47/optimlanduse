@@ -6,28 +6,29 @@
 
 #' Initialize the robust optimization
 #'
-#' The function is used to initialize an \emph{optimLanduse} S3 object on the
+#' The function initializes an \emph{optimLanduse} S3 object on the
 #' basis of a coefficients table. Please note that the coefficients table must follow
 #' the \emph{optimLanduse} format. The expected format is explained in the example on
 #'  \href{https://gitlab.gwdg.de/forest_economics_goettingen/optimlanduse}{GitLab}.
 #'  Usage of \code{\link{dataPreparation}} is recommended to ensure that
 #'  the format requirements are met.
 #'
-#'  Aim of the separation of the initialization and the optimization is to provide
-#'  opportunity to save
-#'  calculation time in batch analysis. The separated function calls allow the
+#'  The aim of separating the initialization from the optimization is to save
+#'  computation time in batch analysis. The separated function calls allow the
 #'  user to perform multiple
 #'  optimizations from one initialized object. This could save time in scenario or
 #'  sensitivity analysis.
 #'
 #' @param coefTable Coefficient table in the expected \emph{optimLanduse} format.
-#' @param uValue \emph{u} Value. The unvertainty (standard deviation or standard error) is
+#' @param uValue \emph{u} Value. The uncertainty (standard deviation or standard error) is
 #' multiplied with the u value. The value therefore enables scenario analyses with differing
-#' uncertainties in relation to indicator values.
+#' uncertainties in relation to indicator values. Higher u values can be interpreted as a higher
+#' risk aversion of the decision maker.
 #' @param optimisticRule Either \emph{expectation} or \emph{uncertaintyAdjustedExpectation}.
 #' The rule indicates whether the optimistic outcomes of an indicator are directly
 #' reflected by their expectations or if the indicator is calculated as expectation +
 #' uncertainty when "more is better", expectation - uncertainty respectively when "less is better".
+#' An optimization based on \emph{expectation} considers only downside risks.
 #' @param fixDistance tbd. Kai B.
 #' @return An initialized optimLanduse S3 object ready for optimization.
 #' @examples
@@ -35,7 +36,8 @@
 #' dat <- read_xlsx(exampleData("databaseShrinked.xlsx"),
 #'                  col_names = FALSE)
 #' dat <- dataPreparation(dat)
-#' init <- initScenario(dat, uValue = 2,
+#' init <- initScenario(dat,
+#'                      uValue = 2,
 #'                      optimisticRule = "expectation",
 #'                      fixDistance = NULL)
 

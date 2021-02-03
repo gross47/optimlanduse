@@ -1,15 +1,15 @@
 #' Attach examplary data
 #'
 #' optimLanduse comes bundled with exemplary data for land-use optimization. The
-#' files can also be found on your computer in the package folder `inst/extdata`. Aim is to
-#' enable quick application of the package for demonstaration and to view the expected structure
+#' files can also be found on your computer in the package folder `./extdata`. These examples
+#' provide some quick applications of the package for demonstration and an example of the expected structure
 #' of the data. Consider also the
 #' \href{https://gitlab.gwdg.de/forest_economics_goettingen/optimlanduse}{GitLab project page} for
-#' exemplary application of the package.
+#' exemplary applications of the package.
 #'
 #' \emph{database.xlsx} and \emph{databaseShrinked.xlsx} are excerpts grom Claff et al .... tbd. Volker
 #'
-#' @param fileName Name of example file. See 'details' section for further explanation of all implemented examples.
+#' @param fileName Name of example file. See 'details' section for further explanation of all provided examples.
 
 #' @return The path to the example file on your computer.
 #'

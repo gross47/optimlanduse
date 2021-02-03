@@ -7,9 +7,9 @@
 solveScenario(x, digitsPrecision = 4, lowerBound = 0, upperBound = 1)
 }
 \arguments{
-\item{x}{The initialized \emph{optimLanduse} object.}
+\item{x}{The initialized \emph{optimLanduse} object. See \code{\link{initScenario}} for the initialization.}
 
-\item{digitsPrecision}{Precision of the solution.}
+\item{digitsPrecision}{Precision of the loss value.}
 
 \item{lowerBound}{Optional lower bounds for the land-use options. Must be 0 or a vector in the dimension of the land-use options.}
 
@@ -19,10 +19,10 @@ solveScenario(x, digitsPrecision = 4, lowerBound = 0, upperBound = 1)
 A solved landUse portfolio ready for export or further data processing.
 }
 \description{
-The function solves the initialized \emph{optimLanduse} object.
+The function solves optimization problem, specified by the initialized \emph{optimLanduse} object.
 }
 \details{
-The foundations of the solver are explained in the paer of Knoke et al. (2016)
+The solving process implemented here is described in the paper of Knoke et al. (2016).
 }
 \examples{
 require(readxl)

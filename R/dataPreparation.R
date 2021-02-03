@@ -8,21 +8,22 @@
 
 #' Transform data to the expected format
 #'
-#' The data must suit to the specific expected optimLanduse format priot
-#' initialization and optimiation. This function
+#' The input data must suit to the specific expected optimLanduse format prior to
+#' initialization and optimization. This function
 #' provides the possibility to easily transform data from the commonly used form
 #' of the exemplary data
-#' \code{\link{exampleData}} into to the expected format. Application of this function
+#' \code{\link{exampleData}} into to the expected format. The application of this function
 #' is not mandatory
-#' if you want to transform your data yourself or, if your data are not formated like
-#' in the example data. The application example on the
+#' if you want to transform your data yourself or if your data is not formatted as
+#' the example data. The application example on the
 #' \href{https://gitlab.gwdg.de/forest_economics_goettingen/optimlanduse}{GitLab project page}
-#' provides information about the expected structure.
+#' provides information about the expected structure. Empty cells of the uncertainty column are
+#' considered as NA.
 #'
 #' @param dat Data frame or tibble in the format of the \code{\link{exampleData}}.
 #' @param uncertainty Indicates the column name of the uncertainty in the data.
 #' Typical is "SE" for standard
-#' error or "SD" for standard deviation. Empty cells are considered as NA.
+#' error or "SD" for standard deviation.
 #' @param expVAL Indicates the column name of the expected value.
 #' @return A formated coefficients table with land-use options and indicator values ready for initialization via \code{\link{initScenario}}.
 #' @examples

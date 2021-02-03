@@ -6,12 +6,12 @@
 
 #' Perform the optimization
 #'
-#' The function solves the initialized \emph{optimLanduse} object.
+#' The function solves optimization problem, specified by the initialized \emph{optimLanduse} object.
 #'
-#'The foundations of the solver are explained in the paer of Knoke et al. (2016)
+#' The solving process implemented here is described in the paper of Knoke et al. (2016).
 #'
-#' @param x The initialized \emph{optimLanduse} object.
-#' @param digitsPrecision Precision of the solution.
+#' @param x The initialized \emph{optimLanduse} object. See \code{\link{initScenario}} for the initialization.
+#' @param digitsPrecision Precision of the loss value.
 #' @param lowerBound Optional lower bounds for the land-use options. Must be 0 or a vector in the dimension of the land-use options.
 #' @param upperBound Optional upper bounds for the land-use options. Must be 1 or a vector in the dimension of the land-use options.
 #' @return A solved landUse portfolio ready for export or further data processing.
