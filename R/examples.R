@@ -22,6 +22,9 @@
 #' path <- exampleData("databaseShrinked.xlsx")
 #' read_xlsx(path, col_names = FALSE)
 #'
+#' @references Clough, Y., Krishna, V., Corre, M. et al. Land-use choices follow profitability at the expense of
+#' ecological functions in Indonesian smallholder landscapes. Nat Commun 7, 13137 (2016). https://doi.org/10.1038/ncomms13137
+
 #' @export
 exampleData <- function(fileName = "database.xlsx") {
   possibleFiles <- dir(system.file("extdata", package = "optimLanduse"))
