@@ -36,7 +36,7 @@ result <- solveScenario(x = init)
 
 }
 \references{
-Knoke, T., Paul, C., Hildebrandt, P. et al. (2020): Compositional diversity
+Knoke, T., Paul, C., Hildebrandt, P. et al. (2016): Compositional diversity
 of rehabilitated tropical lands supports multiple ecosystem services and
 buffers uncertainties. \emph{Nat Commun} \strong{7}, 11877. \url{https://doi.org/10.1038/ncomms11877}
 }

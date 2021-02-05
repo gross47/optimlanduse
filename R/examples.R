@@ -7,7 +7,7 @@
 #' \href{https://gitlab.gwdg.de/forest_economics_goettingen/optimlanduse}{GitLab project page} for
 #' exemplary applications of the package.
 #'
-#' \emph{database.xlsx} and \emph{databaseShrinked.xlsx} are excerpts grom Claff et al .... tbd. Volker
+#' \emph{database.xlsx} and \emph{databaseShrinked.xlsx} are excerpts from Clough et al. 2016.
 #'
 #' @param fileName Name of example file. See 'details' section for further explanation of all provided examples.
 
