@@ -24,14 +24,11 @@ optimLanduse
 <a name="1. Einleitung">Introduction</a>
 </h3>
 
-**optimLanduse** provides methods for robust multi-criterial landscape optimization that explicitly includes uncertainty in the optimization of the land allocation. High landscape diversity is assumed to increase the number and level of ecosystem services. However, the interactions between ecosystem service provision, disturbance and landscape composition are poorly understood. Knoke et al. (2016) therefore presented a novel approach to include uncertainty in the optimization of land allocation for improving the provision of multiple ecosystem services.
+**optimLanduse** provides methods for robust multi-criterial landscape optimization that explicitly include uncertainty in the optimization of the land allocation. High landscape diversity is assumed to increase the number and level of ecosystem services. However, the interactions between ecosystem service provision, disturbance and landscape composition are poorly understood. Knoke et al. (2016) therefore presented a novel approach to include uncertainty in the optimization of land allocation for improving the provision of multiple ecosystem services. The optimization framework of Knoke et al. (2016) is implemented in the **optimLanduse** package, with aim to make it easily accessable for practical the land-use optimzation and to enable batch applications of land-use optimizations.
 
+The method is already established in land-use optimization an has been applied in a couple of studies. More details about the theory, the formal optimization problem definition and also significant examples are listed in the <a href="#7. Literatur">literature</a> section
 
-Ziel des Pakets ist es, die von der Arbeitsgruppe Knoke entwickelte bzw. für die Landschaftsoptimierung erstmalig vewendete multikriterielle robuste Landschaftsoptimierung komfortabel und skalierbar anwenden zu können. Durch das Einbetten der Optimierung in die R Umgebung werden Datenvor- und -nachbereitung vereinfacht. So werden insbesondere Wiederholungsanwendungen (bspw. Sensitivitätsanalysen oder Distanzanalysen) einfach und schnell möglich.
-
-Das Paket ist so weit wie möglich generisch und modular aufgebaut. So können zukünftige Erweiterungen schnell und einfach hinzugefügt werden. Außerdem können verschiedene Arbeitsgruppen ihre Kenntnisse und Interessen gezielt einbringen, in dem sie sich auf die Entwicklung ihres spezifischen Moduls konzentrieren. Hintergrund ist, dass das Paket eine Basis bilden soll, mit der die Zusammenarbeit zwischen interessierten Arbeitsgruppen der robusten Landschaftsoptimierung vereinfacht werden soll. In diesem Repository liegt der aktuelle Arbeitsstand. Das Paket kann direkt aus dem Repository installiert werden und ist öffentlich erreichbar. Entwicklerinnen und Entwickler können auf Anfrage bei der Abteilung Forstökonomie und nachhaötige Landnutzunhsplanung Zugang zum Repository bekommen. Ihnen stehen dann alle Funktionen des GitLabs zur Verfügung.
-
-Für eine schnelle, einfache Anwendung des Pakets existiert eine grafische Web-Oberfläche (https://gitlab.gwdg.de/forest_economics_goettingen/optimlanduse_shiny).
+We designed a graphical shiny application for the package to get a quick idea of the functionalities of the package, see https://gitlab.gwdg.de/forest_economics_goettingen/optimlanduse_shiny.
 
 
 
@@ -41,7 +38,7 @@ Siehe zum Beispiel (in Arbeit)
 - https://pubmed.ncbi.nlm.nih.gov/28189309/
 - https://onlinelibrary.wiley.com/doi/full/10.1111/gcb.15003
 - https://link.springer.com/article/10.1007/s10457-020-00519-0
-<!-- Sollten wir uns für die ausführliche Readme anstelle des Papers entscheiden, würde ich hier den Kernansatz des Optimierungsproblems (GoalProgramming, Entscheidungsvariablen etc.) nochmal aufzeigen. Sonst genügt m.E. der Verweis auf die Publikationen, vielleicht mit einem kurzen Hinweis, dass da das formale Problem zu finden ist. -->
+
 
 <h3>
 <a name="3. Input und Output">Package structure</a>
@@ -64,8 +61,8 @@ In dem Paket wird ein robustes multikriterielles Optimierungsproblem so umformul
 <p align="center">
   <img width="720" height="643" src="./man/figures/flussdiagrammOptimLanduse.PNG">
 </p>
-<h3>
 
+<h3>
 <a name="6. Beispielhafte Anwendung">Exemplary application</a>
 </h3>
 Um die aktuellste stabile Version zu installieren, führen Sie den folgenden Code aus.
@@ -239,3 +236,8 @@ applyDf <- cbind(applyDf,
                  rename_at(vars(factor(1:(length(unique(dat$landUse))+1))),
                            ~ c("beta",unique(dat$landUse))) 
 ```
+
+<h3>
+<a name="7. Literatur">Literature</a>
+</h3>
+Knoke, T., Paul, C., Hildebrandt, P. et al. (2016): Compositional diversity of rehabilitated tropical lands supports multiple ecosystem services and buffers uncertainties. <em>Nat Commun</EM> **7**, 11877. https://doi.org/10.1038/ncomms11877
