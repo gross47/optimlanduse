@@ -19,10 +19,10 @@ solveScenario(x, digitsPrecision = 4, lowerBound = 0, upperBound = 1)
 A solved landUse portfolio ready for export or further data processing.
 }
 \description{
-The function solves optimization problem, specified by the initialized \emph{optimLanduse} object.
+The function solves the optimization problem, specified by the initialized \emph{optimLanduse} object.
 }
 \details{
-The methodological background and the formulation of the optimization framework is described in Knoke et al. (2016).
+The methodological background and the formulation of the optimization framework are described in Knoke et al. (2016).
 }
 \examples{
 require(readxl)

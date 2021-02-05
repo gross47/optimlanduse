@@ -24,9 +24,9 @@ optimLanduse
 <a name="1. Einleitung">Introduction</a>
 </h3>
 
-**optimLanduse** provides methods for robust multi-criterial landscape optimization that explicitly include uncertainty in the optimization of the land allocation. High landscape diversity is assumed to increase the number and level of ecosystem services. However, the interactions between ecosystem service provision, disturbance and landscape composition are poorly understood. Knoke et al. (2016) therefore presented a novel approach to include uncertainty in the optimization of land allocation for improving the provision of multiple ecosystem services. The optimization framework of Knoke et al. (2016) is implemented in the **optimLanduse** package, with aim to make it easily accessible for practical the land-use optimization and to enable batch applications of land-use optimizations.
+**optimLanduse** provides methods for robust multi-criterial landscape optimization that explicitly account for uncertainty in the optimization of the land allocation to land-use options. High landscape diversity is assumed to increase the number and level of ecosystem services. However, the interactions between ecosystem service provision, disturbances and landscape composition are poorly understood. Knoke et al. (2016) therefore presented a novel approach to incorporate uncertainty in land allocation optimization to improve the provision of multiple ecosystem services. The optimization framework of Knoke et al. (2016) is implemented in the **optimLanduse** package, aiming to make it easily accessible for practical land-use optimization and to enable efficient batch applications.
 
-The method is already established in land-use optimization an has been applied in a couple of studies. More details about the theory, the formal optimization problem definition and also significant examples are listed in the <a href="#7. Literatur">literature</a> section
+The method is already established in land-use optimization and has been applied in a couple of studies. More details about the theory, the definition of the formal optimization problem and also significant examples are listed in the <a href="#7. Literatur">literature</a> section
 
 We designed a graphical shiny application for the package to get a quick idea of the functionalities of the package, see https://gitlab.gwdg.de/forest_economics_goettingen/optimlanduse_shiny.
 
@@ -36,7 +36,7 @@ We designed a graphical shiny application for the package to get a quick idea of
 <a name="3. Input und Output">Package structure</a>
 </h3>
 
-This chapter provides brief overview over the package functions. Please consider their respective help pages for more information. The function loSolveAPI comes from the **lpSolveAPI** package. https://cran.r-project.org/package=lpSolveAPI
+This chapter provides brief overview over the package functions. Please consider their respective help pages for more information. The function lpSolveAPI comes from the **lpSolveAPI** package. https://cran.r-project.org/package=lpSolveAPI
 
 #### Input
 - Parameterdatei mit Erwartungen und Unsicherheiten. Formatiert wie in der Bespieldatei **dataset.xlsx**
@@ -110,7 +110,7 @@ result$status # Erfolgreich optimiert oder abgebrochen?
 result$beta # Beta
 ```
 
-Exemplary bartch application for distict unverteinty values u
+Exemplary batch application for distinct uncertainty values u
 ``` r
 # Pakete laden
 library(optimLanduse)
@@ -154,7 +154,7 @@ applyDf <- cbind(applyDf,
                  t(apply(applyDf, 1, applyFun)))
 ```
 
-Show the land-use allocations with increasing unvertainty
+Show the land-use allocations with increasing uncertainty
 ``` r
 # Show the result visually
 require(ggplot2)
@@ -192,7 +192,7 @@ loopDf1 <- foreach(i = u, .combine = rbind, .packages = "optimLanduse") %dopar% 
 stopImplicitCluster()
 ```
 
-Batch application for distict uncertainty values and fixed distance at the highest unceretainty level.
+Batch application for distinct uncertainty values and fixed distance at the highest uncertainty level.
 
 ``` r
 # Pakete laden
