@@ -2,7 +2,8 @@
 #### Transform the input table in an optimLanduse object ####
 ##--#####################################################--##
 
-# Fri Jan 24 23:53:50 2020 ------------------------------
+# Fri Feb  5 10:40:10 2021 ------------------------------
+
 
 #' Initialize the robust optimization
 #'
@@ -58,14 +59,9 @@ initScenario <- function(coefTable,  uValue = 1, optimisticRule = "expectation",
 
   indicatorNames <- as.character(unique(coefTable$indicator))
 
-  # all(indicatorNamesCheck %in% coefTable$indicator[coefTable$landUse == "Forest"]) # useless
   testLandUseIndicators <- function (x) {
     all(indicatorNames %in% x)
   }
-
-
-  # checkLanduseTemp <- coefTable %>% group_by(landUse) %>%
-  #   summarise(checkLanduse = testLandUseIndicators(indicator))
 
   checkLanduseTemp <- stats::aggregate(indicator ~ landUse, FUN = testLandUseIndicators, data = coefTable)
 
@@ -90,12 +86,6 @@ initScenario <- function(coefTable,  uValue = 1, optimisticRule = "expectation",
   expandMatrix2 <- do.call(rbind, replicate(length(indicatorNames), expandMatrix1, simplify = FALSE))
   scenarioTable <- tibble(indicator = rep(indicatorNames, each = dim(expandMatrix1)[1])) %>%
     bind_cols(as_tibble(expandMatrix2))
-  # scenarioTable <- tibble(indicator = rep(indicatorNames, each = dim(expandMatrix1)[1])) %>%
-  #   left_join(indicatorNames, by = "indicator") %>% bind_cols(as_tibble(expandMatrix2))
-  # Alter Version. Evtl relevant bei Fehlersuche. Ich weiß nicht mehr was ich mir bei dem left join gedacht habe.
-  # tbd. Tidy raus
-  # scenarioTable <- scenarioTable %>% rename_at(.vars = vars(!!landUse[1] : !!landUse[length(landUse)]),
-  #                                              .funs = funs(paste0("outcome", .))) #.funs deprecated
 
   names(scenarioTable)[names(scenarioTable) %in% landUse] <- paste0("outcome",names(scenarioTable)[names(scenarioTable) %in% landUse])
 
@@ -113,16 +103,12 @@ initScenario <- function(coefTable,  uValue = 1, optimisticRule = "expectation",
 
   scenarioTableTemp2 <- scenarioTable
 
-  # Das muss noch umgeschrieben werden, da funs "deprecated" ist: Am besten ganz ohne tidy ...
-
-  # spread1 <- coefTable %>% select(-indicatorUncertainty) %>%
-  #   spread(key = landUse, value = indicatorValue)
   spread1 <- tidyr::spread(data = coefTable[, !names(coefTable) == "indicatorUncertainty"],
                     key = landUse,
                     value = "indicatorValue")
   names(spread1)[names(spread1) %in% eval(landUse)] <- paste0("mean", names(spread1)[names(spread1) %in% eval(landUse)])
 
-  #spread2a <- coefTable %>% select(-indicatorValue) %>% spread(key = landUse, value = indicatorUncertainty)
+
   spread2 <- tidyr::spread(data = coefTable[, !names(coefTable) == "indicatorValue"],
                      key = landUse,
                      value = "indicatorUncertainty")
@@ -136,7 +122,7 @@ initScenario <- function(coefTable,  uValue = 1, optimisticRule = "expectation",
     scenarioTable <- left_join(scenarioTable, spread2[, c("indicator", paste0("sem", i))], by = byIndicator)
   }
 
-  # scenarioTable <- scenarioTable %>% select(-contains("mean"), everything()) # Order the variables, such that the means and uncertainties follow in direct succession
+
   scenarioTable <- scenarioTable %>% select(-contains("sem"), everything()) # Alternatively, but slower, a second loop would be suitable
 
   if(!dim(scenarioTableTemp1)[1] == dim(scenarioTable)[1]) {cat("Error: Attaching expectation or uncertainty failed.")}
@@ -192,13 +178,9 @@ initScenario <- function(coefTable,  uValue = 1, optimisticRule = "expectation",
   } else if (dim(fixDistance)[1] == dim(scenarioTable)[1] &&
              length(fixDistance)==2) {
     scenarioTable[, c("minAdjSem", "maxAdjSem")] <- fixDistance
-    # scenarioTable[, c("minAdjSem", "maxAdjSem")] <-
-    # apply(scenarioTable[, startsWith(names(scenarioTable), "adjSem")], 1,
-    #       function(x) {c(min(x), max(x))}) %>% t()
     scenarioTable$diffAdjSem <- scenarioTable$maxAdjSem - scenarioTable$minAdjSem
   } else {stop(paste("The dimension of the 'fixDistance' (min and max) must contain: 2 columns and",
                      dim(scenarioTable)[1], "rows."))}
-
 
 
   #-------------------------------------------------------------#
@@ -219,7 +201,6 @@ initScenario <- function(coefTable,  uValue = 1, optimisticRule = "expectation",
                   scenarioTable = scenarioTable,
                   coefObjective = coefObjective,
                   coefConstraint = constraintCoefficients,
-                  # distance = scenarioTable$diffAdjSem,
                   distance = scenarioTable[, c("minAdjSem", "maxAdjSem")],
                   status = "initialized",
                   beta = NA,
