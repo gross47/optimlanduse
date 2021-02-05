@@ -24,7 +24,7 @@ optimLanduse
 <a name="1. Einleitung">Introduction</a>
 </h3>
 
-**optimLanduse** provides methods for robust multi-criterial landscape optimization that explicitly include uncertainty in the optimization of the land allocation. High landscape diversity is assumed to increase the number and level of ecosystem services. However, the interactions between ecosystem service provision, disturbance and landscape composition are poorly understood. Knoke et al. (2016) therefore presented a novel approach to include uncertainty in the optimization of land allocation for improving the provision of multiple ecosystem services. The optimization framework of Knoke et al. (2016) is implemented in the **optimLanduse** package, with aim to make it easily accessable for practical the land-use optimzation and to enable batch applications of land-use optimizations.
+**optimLanduse** provides methods for robust multi-criterial landscape optimization that explicitly include uncertainty in the optimization of the land allocation. High landscape diversity is assumed to increase the number and level of ecosystem services. However, the interactions between ecosystem service provision, disturbance and landscape composition are poorly understood. Knoke et al. (2016) therefore presented a novel approach to include uncertainty in the optimization of land allocation for improving the provision of multiple ecosystem services. The optimization framework of Knoke et al. (2016) is implemented in the **optimLanduse** package, with aim to make it easily accessible for practical the land-use optimization and to enable batch applications of land-use optimizations.
 
 The method is already established in land-use optimization an has been applied in a couple of studies. More details about the theory, the formal optimization problem definition and also significant examples are listed in the <a href="#7. Literatur">literature</a> section
 
@@ -35,7 +35,8 @@ We designed a graphical shiny application for the package to get a quick idea of
 <h3>
 <a name="3. Input und Output">Package structure</a>
 </h3>
-This chapter privides brief overview over the package functions. Please consider their respective help pages for more information. The function loSolveAPI comes from the **lpSolveAPI** package. https://cran.r-project.org/package=lpSolveAPI
+
+This chapter provides brief overview over the package functions. Please consider their respective help pages for more information. The function loSolveAPI comes from the **lpSolveAPI** package. https://cran.r-project.org/package=lpSolveAPI
 
 #### Input
 - Parameterdatei mit Erwartungen und Unsicherheiten. Formatiert wie in der Bespieldatei **dataset.xlsx**
