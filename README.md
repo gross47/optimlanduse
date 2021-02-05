@@ -9,25 +9,19 @@ optimLanduse
 <a href="#1. Einleitung">Introduction</a>
 </li>
 <li>
-<a href="#3. Input und Output">3. Input und Output</a>
+<a href="#3. Input und Output">Package structure</a>
 </li>
 <li>
-<a href="#5. Hinweise zur Anwendung">5. Hinweise zur Anwendung</a>
+<a href="#6. Beispielhafte Anwendung">Exemplary application</a>
 </li>
 <li>
-<a href="#6. Beispielhafte Anwendung">6. Beispielhafte Anwendung</a>
-</li>
-<li>
-<a href="#7. Literatur">7. Literatur</a>
-</li>
-<li>
-<a href="#7. Dateien">8. Dateien</a>
+<a href="#7. Literatur">Literature</a>
 </li>
 </ul>
 
 
 <h3>
-<a name="1. Einleitung">1. Einleitung</a>
+<a name="1. Einleitung">Introduction</a>
 </h3>
 
 **optimLanduse** provides methods for robust multi-criterial landscape optimization that explicitly includes uncertainty in the optimization of the land allocation. High landscape diversity is assumed to increase the number and level of ecosystem services. However, the interactions between ecosystem service provision, disturbance and landscape composition are poorly understood. Knoke et al. (2016) therefore presented a novel approach to include uncertainty in the optimization of land allocation for improving the provision of multiple ecosystem services.
@@ -50,7 +44,7 @@ Siehe zum Beispiel (in Arbeit)
 <!-- Sollten wir uns für die ausführliche Readme anstelle des Papers entscheiden, würde ich hier den Kernansatz des Optimierungsproblems (GoalProgramming, Entscheidungsvariablen etc.) nochmal aufzeigen. Sonst genügt m.E. der Verweis auf die Publikationen, vielleicht mit einem kurzen Hinweis, dass da das formale Problem zu finden ist. -->
 
 <h3>
-<a name="3. Input und Output">3. Input und Output</a>
+<a name="3. Input und Output">Package structure</a>
 </h3>
 
 #### Input (mehr Details siehe Pakethilfe)
@@ -71,7 +65,8 @@ In dem Paket wird ein robustes multikriterielles Optimierungsproblem so umformul
   <img width="720" height="643" src="./man/figures/flussdiagrammOptimLanduse.PNG">
 </p>
 <h3>
-<a name="5. Hinweise zur Anwendung">5. Hinweise zur Anwendung</a>
+
+<a name="6. Beispielhafte Anwendung">Exemplary application</a>
 </h3>
 Um die aktuellste stabile Version zu installieren, führen Sie den folgenden Code aus.
 
@@ -97,10 +92,6 @@ package.check <- lapply(
 install_gitlab("forest_economics_goettingen/optimlanduse", host = "gitlab.gwdg.de")
 
 ```
-
-<h3>
-<a name="6. Beispielhafte Anwendung">6. Beispielhafte Anwendung</a>
-</h3>
 
 Einfache Anwendung
 ``` r
