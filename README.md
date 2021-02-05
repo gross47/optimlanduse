@@ -2,20 +2,14 @@ optimLanduse
 -----------
 
 <h3>
-<a name="menu">Inhaltsverzeichnis</a>
+<a name="menu"></a>
 </h3>
 <ul>
 <li>
-<a href="#1. Einleitung">1. Einleitung</a>
-</li>
-<li>
-<a href="#2. Theoretischer Hintergrund">2. Theoretischer Hintergrund</a>
+<a href="#1. Einleitung">Introduction</a>
 </li>
 <li>
 <a href="#3. Input und Output">3. Input und Output</a>
-</li>
-<li>
-<a href="#4. Aufbau des Modells">4. Aufbau des Modells</a>
 </li>
 <li>
 <a href="#5. Hinweise zur Anwendung">5. Hinweise zur Anwendung</a>
@@ -36,8 +30,9 @@ optimLanduse
 <a name="1. Einleitung">1. Einleitung</a>
 </h3>
 
-**optimLanduse** ist ein R Paket für die multikriterielle robuste Landschaftsoptimierung.
-<!-- Hier fehlen mir 1-2 Sätze dazu, was unter 'Landschaftsoptimierung' zu verstehen ist. Zumindest würde ich ergänzen, dass es um Landnutzungsanteile/-zusammensetzungen wie Farm-, Baumartenzusammensetzungen o.ä. geht. Aktuell ist das ja auch nicht räumlich-explizit, könnte auch relevant sein, ist aber eine eher strategische Frage, ob man das explizit benennen möchte. -->
+**optimLanduse** provides methods for robust multi-criterial landscape optimization that explicitly includes uncertainty in the optimization of the land allocation. High landscape diversity is assumed to increase the number and level of ecosystem services. However, the interactions between ecosystem service provision, disturbance and landscape composition are poorly understood. Knoke et al. (2016) therefore presented a novel approach to include uncertainty in the optimization of land allocation for improving the provision of multiple ecosystem services.
+
+
 Ziel des Pakets ist es, die von der Arbeitsgruppe Knoke entwickelte bzw. für die Landschaftsoptimierung erstmalig vewendete multikriterielle robuste Landschaftsoptimierung komfortabel und skalierbar anwenden zu können. Durch das Einbetten der Optimierung in die R Umgebung werden Datenvor- und -nachbereitung vereinfacht. So werden insbesondere Wiederholungsanwendungen (bspw. Sensitivitätsanalysen oder Distanzanalysen) einfach und schnell möglich.
 
 Das Paket ist so weit wie möglich generisch und modular aufgebaut. So können zukünftige Erweiterungen schnell und einfach hinzugefügt werden. Außerdem können verschiedene Arbeitsgruppen ihre Kenntnisse und Interessen gezielt einbringen, in dem sie sich auf die Entwicklung ihres spezifischen Moduls konzentrieren. Hintergrund ist, dass das Paket eine Basis bilden soll, mit der die Zusammenarbeit zwischen interessierten Arbeitsgruppen der robusten Landschaftsoptimierung vereinfacht werden soll. In diesem Repository liegt der aktuelle Arbeitsstand. Das Paket kann direkt aus dem Repository installiert werden und ist öffentlich erreichbar. Entwicklerinnen und Entwickler können auf Anfrage bei der Abteilung Forstökonomie und nachhaötige Landnutzunhsplanung Zugang zum Repository bekommen. Ihnen stehen dann alle Funktionen des GitLabs zur Verfügung.
@@ -45,9 +40,6 @@ Das Paket ist so weit wie möglich generisch und modular aufgebaut. So können z
 Für eine schnelle, einfache Anwendung des Pakets existiert eine grafische Web-Oberfläche (https://gitlab.gwdg.de/forest_economics_goettingen/optimlanduse_shiny).
 
 
-<h3>
-<a name="2. Theoretischer Hintergrund">2. Theoretischer Hintergrund</a>
-</h3>
 
 Siehe zum Beispiel (in Arbeit)
 
@@ -71,9 +63,7 @@ Siehe zum Beispiel (in Arbeit)
 - Szenarientabelle
 - Mindestabstand **&beta;**
 
-<h3>
-<a name="4. Aufbau des Modells">4. Aufbau des Modells</a>
-</h3>
+
 
 In dem Paket wird ein robustes multikriterielles Optimierungsproblem so umformuliert, dass es schritweise mit dem lpSolveAPI Paket gelöst werden kann. Das lpSolveAPI Paket ist in C++ geschrieben. Es gilt als eins der schnellsten Pakete der lineare Optimierung.
 

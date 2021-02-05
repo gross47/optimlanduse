@@ -8,7 +8,7 @@
 #'
 #' The function solves optimization problem, specified by the initialized \emph{optimLanduse} object.
 #'
-#' The solving process implemented here is described in the paper of Knoke et al. (2016).
+#' The methodological background and the formulation of the optimization framework is described in Knoke et al. (2016).
 #'
 #' @param x The initialized \emph{optimLanduse} object. See \code{\link{initScenario}} for the initialization.
 #' @param digitsPrecision Precision of the loss value.

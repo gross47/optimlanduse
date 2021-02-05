@@ -22,7 +22,7 @@ A solved landUse portfolio ready for export or further data processing.
 The function solves optimization problem, specified by the initialized \emph{optimLanduse} object.
 }
 \details{
-The solving process implemented here is described in the paper of Knoke et al. (2016).
+The methodological background and the formulation of the optimization framework is described in Knoke et al. (2016).
 }
 \examples{
 require(readxl)
