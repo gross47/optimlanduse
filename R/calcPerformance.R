@@ -17,7 +17,7 @@
 #' achieved across all indicators. The solveScenario() function maximizes the
 #' guaranteed performance, or minimizes the distance to the maximum possible.
 #'
-#' For further information see the supplement of Gosling et al (2020), Formula S5.
+#' For further information see the supplement of Gosling et al (2020), Formula S5 (in the supplement of the paper).
 #'
 #' @param x An optimized optimLanduse object.
 #' @return An optimized optimLanduse object with attached portfolio performance.
