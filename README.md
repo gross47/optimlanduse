@@ -32,29 +32,21 @@ We designed a graphical shiny application for the package to get a quick idea of
 
 
 
-Siehe zum Beispiel (in Arbeit)
-
-- https://onlinelibrary.wiley.com/doi/full/10.1111/gcb.15003
-- https://link.springer.com/article/10.1007/s10457-020-00519-0
-
-
 <h3>
 <a name="3. Input und Output">Package structure</a>
 </h3>
+This chapter privides brief overview over the package functions. Please consider their respective help pages for more information. The function loSolveAPI comes from the **lpSolveAPI** package. https://cran.r-project.org/package=lpSolveAPI
 
-#### Input (mehr Details siehe Pakethilfe)
+#### Input
 - Parameterdatei mit Erwartungen und Unsicherheiten. Formatiert wie in der Bespieldatei **dataset.xlsx**
 - Unsicherheit **u**
 - Form des optimistischen Szenarios, Erwartung oder Erwartung + Unsicherheit?
 
-#### Output (mehr Details siehe Pakethilfe)
+#### Output
 - Landnutzungsanteile
 - Szenarientabelle
 - Mindestabstand **&beta;**
 
-
-
-In dem Paket wird ein robustes multikriterielles Optimierungsproblem so umformuliert, dass es schritweise mit dem lpSolveAPI Paket gelöst werden kann. Das lpSolveAPI Paket ist in C++ geschrieben. Es gilt als eins der schnellsten Pakete der lineare Optimierung.
 
 <p align="center">
   <img width="720" height="643" src="./man/figures/flussdiagrammOptimLanduse.PNG">
@@ -63,7 +55,7 @@ In dem Paket wird ein robustes multikriterielles Optimierungsproblem so umformul
 <h3>
 <a name="6. Beispielhafte Anwendung">Exemplary application</a>
 </h3>
-Um die aktuellste stabile Version zu installieren, führen Sie den folgenden Code aus.
+Um die aktuellste stabile Version zu installieren, führen Sie den folgenden Code aus. Kann dann weg.
 
 ``` r
 ## Benötigte Pakete
@@ -88,7 +80,7 @@ install_gitlab("forest_economics_goettingen/optimlanduse", host = "gitlab.gwdg.d
 
 ```
 
-Einfache Anwendung
+Simple example
 ``` r
 # Pakete laden
 library(optimLanduse) 
@@ -117,7 +109,7 @@ result$status # Erfolgreich optimiert oder abgebrochen?
 result$beta # Beta
 ```
 
-Batch Anwendung für mehrere Unsicherheiten u
+Exemplary bartch application for distict unverteinty values u
 ``` r
 # Pakete laden
 library(optimLanduse)
@@ -161,8 +153,7 @@ applyDf <- cbind(applyDf,
                  t(apply(applyDf, 1, applyFun)))
 ```
 
-Landnutzungsverteilung bei steigender Unsicherheit anzeigen
-
+Show the land-use allocations with increasing unvertainty
 ``` r
 # Show the result visually
 require(ggplot2)
@@ -172,7 +163,7 @@ applyDf %>% gather(key = "land-use option", value = "land-use share", -u, -beta)
 ```
 
 
-Batch Anwendung - parallel
+Batch example - parallel
 
 ``` r
 # Pakete laden
@@ -200,7 +191,7 @@ loopDf1 <- foreach(i = u, .combine = rbind, .packages = "optimLanduse") %dopar% 
 stopImplicitCluster()
 ```
 
-Batch Anwendung für mehrere Unsicherheiten und fixierter Distanz auf dem höchsten Unsicherheits-Level u
+Batch application for distict uncertainty values and fixed distance at the highest unceretainty level.
 
 ``` r
 # Pakete laden
