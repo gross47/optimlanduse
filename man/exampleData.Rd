@@ -21,7 +21,7 @@ of the data. Consider also the
 exemplary applications of the package.
 }
 \details{
-\emph{database.xlsx} and \emph{databaseShrinked.xlsx} are excerpts grom Claff et al .... tbd. Volker
+\emph{database.xlsx} and \emph{databaseShrinked.xlsx} are excerpts from Clough et al. 2016.
 }
 \examples{
 require(readxl)
@@ -32,4 +32,8 @@ read_xlsx(path, col_names = FALSE)
 path <- exampleData("databaseShrinked.xlsx")
 read_xlsx(path, col_names = FALSE)
 
+}
+\references{
+Clough, Y., Krishna, V., Corre, M. et al. Land-use choices follow profitability at the expense of
+ecological functions in Indonesian smallholder landscapes. Nat Commun 7, 13137 (2016). https://doi.org/10.1038/ncomms13137
 }
