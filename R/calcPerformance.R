@@ -84,15 +84,15 @@ calcPerformance <- function(x) {
   #                                                   ((portfolioPerformance - minAdjSem) / diffAdjSem),
   #                                                   ((maxAdjSem - portfolioPerformance) / diffAdjSem)))
 
-  x$scenarioTable[x$scenarioTable$direction == "more is better", "performance"] <-
-    1 - (x$scenarioTable$portfolioPerformance[x$scenarioTable$direction == "more is better"] -
-           x$scenarioTable$minAdjSem[x$scenarioTable$direction == "more is better"]) /
-    x$scenarioTable$diffAdjSem[x$scenarioTable$direction == "more is better"]
-
   x$scenarioTable[x$scenarioTable$direction == "less is better", "performance"] <-
-    1 - (x$scenarioTable$maxAdjSem[x$scenarioTable$direction == "less is better"] -
-           x$scenarioTable$portfolioPerformance[x$scenarioTable$direction == "less is better"]) /
+    1 - (x$scenarioTable$portfolioPerformance[x$scenarioTable$direction == "less is better"] -
+           x$scenarioTable$minAdjSem[x$scenarioTable$direction == "less is better"]) /
     x$scenarioTable$diffAdjSem[x$scenarioTable$direction == "less is better"]
+
+  x$scenarioTable[x$scenarioTable$direction == "more is better", "performance"] <-
+    1 - (x$scenarioTable$maxAdjSem[x$scenarioTable$direction == "more is better"] -
+           x$scenarioTable$portfolioPerformance[x$scenarioTable$direction == "more is better"]) /
+    x$scenarioTable$diffAdjSem[x$scenarioTable$direction == "more is better"]
 
   if(any(is.na(x$scenarioTable$performance))) {cat("Warning: Not all performances calculated.")}
 
