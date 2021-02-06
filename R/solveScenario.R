@@ -120,7 +120,7 @@ solveScenario <- function (x, digitsPrecision = 4,
     x$landUse[1, ] <- rep(NA, length(coefObjective))
   } else {
     x$status <- "optimized"
-    x$beta <- round(retPiConstraintRhs, digitsPrecision)
+    x$beta <- 1 - round(retPiConstraintRhs, digitsPrecision)
     x$landUse[1, ] <- lpSolveAPI::get.variables(lpaObj)
   }
   return(x)
