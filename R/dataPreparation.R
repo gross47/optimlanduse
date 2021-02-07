@@ -4,7 +4,7 @@
 
 # Tue Oct 13 15:41:41 2020 ------------------------------
 # Maintainer: Kai Husmann
-# Developer: Kai Husmann, Kai Bödecker, Volker von Groß
+# Developer: Kai Husmann, Kai Bödeker, Volker von Groß
 
 #' Transform data to the expected format
 #'
