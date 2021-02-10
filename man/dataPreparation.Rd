@@ -28,12 +28,11 @@ is not mandatory
 if you want to transform your data yourself or if your data is not formatted as
 the example data. The application example on the
 \href{https://gitlab.gwdg.de/forest_economics_goettingen/optimlanduse}{GitLab project page}
-provides information about the expected structure. Empty cells of the uncertainty column are
-considered as NA.
+provides information about the expected structure. Incomplete rows with NA-values are deleted and an error message is displayed.
 }
 \examples{
 require(readxl)
-dat <- read_xlsx(exampleData("databaseShrinked.xlsx"),
+dat <- read_xlsx(exampleData("exampleGosling_2020.xlsx"),
                  col_names = FALSE)
-dat <- dataPreparation(dat)
+dat <- dataPreparation(dat, uncertainty = "SE", expVAL = "score")
 }

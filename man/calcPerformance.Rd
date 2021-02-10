@@ -30,9 +30,9 @@ For further information see the supplement of Gosling et al (2020), Formula S5 (
 require(ggplot2)
 require(readxl)
 
-dat <- read_xlsx(exampleData("databaseShrinked.xlsx"),
+dat <- read_xlsx(exampleData("exampleGosling_2020.xlsx"),
                  col_names = FALSE)
-dat <- dataPreparation(dat)
+dat <- dataPreparation(dat, uncertainty = "SE", expVAL = "score")
 init <- initScenario(dat, uValue = 2,
                      optimisticRule = "expectation",
                      fixDistance = NULL)

@@ -47,9 +47,9 @@ The aim of separating the initialization from the optimization is to save
 }
 \examples{
 require(readxl)
-dat <- read_xlsx(exampleData("databaseShrinked.xlsx"),
+dat <- read_xlsx(exampleData("exampleGosling_2020.xlsx"),
                  col_names = FALSE)
-dat <- dataPreparation(dat)
+dat <- dataPreparation(dat, uncertainty = "SE", expVAL = "score")
 init <- initScenario(dat,
                      uValue = 2,
                      optimisticRule = "expectation",

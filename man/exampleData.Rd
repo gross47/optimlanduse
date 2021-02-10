@@ -4,7 +4,7 @@
 \alias{exampleData}
 \title{Attach examplary data}
 \usage{
-exampleData(fileName = "database.xlsx")
+exampleData(fileName = "exampleGosling_2020.xlsx")
 }
 \arguments{
 \item{fileName}{Name of example file. See 'details' section for further explanation of all provided examples.}
@@ -21,19 +21,17 @@ of the data. Consider also the
 exemplary applications of the package.
 }
 \details{
-\emph{database.xlsx} and \emph{databaseShrinked.xlsx} are excerpts from Clough et al. 2016.
+\emph{exampleGosling_2020.xlsx} is an excerpt from Gosling et al. 2020.
 }
 \examples{
 require(readxl)
 path <- exampleData()
 read_xlsx(path, col_names = FALSE)
-path <- exampleData("database.xlsx")
-read_xlsx(path, col_names = FALSE)
-path <- exampleData("databaseShrinked.xlsx")
+path <- exampleData("exampleGosling_2020.xlsx")
 read_xlsx(path, col_names = FALSE)
 
 }
 \references{
-Clough, Y., Krishna, V., Corre, M. et al. Land-use choices follow profitability at the expense of
-ecological functions in Indonesian smallholder landscapes. Nat Commun 7, 13137 (2016). https://doi.org/10.1038/ncomms13137
+Gosling, E., Reith, E., Knoke, T. et al. Exploring farmer perceptions of agroforestry via multi-objective optimisation:
+a test application in Eastern Panama. Agroforest Syst 94, 2003–2020 (2020). https://doi.org/10.1007/s10457-020-00519-0
 }
