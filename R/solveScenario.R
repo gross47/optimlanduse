@@ -17,9 +17,9 @@
 #' @return A solved landUse portfolio ready for export or further data processing.
 #' @examples
 #' require(readxl)
-#' dat <- read_xlsx(exampleData("databaseShrinked.xlsx"),
+#' dat <- read_xlsx(exampleData("exampleGosling_2020.xlsx.xlsx"),
 #'                  col_names = FALSE)
-#' dat <- dataPreparation(dat)
+#' dat <- dataPreparation(dat, uncertainty = "SE", expVAL = "score")
 #' init <- initScenario(dat, uValue = 2,
 #'                      optimisticRule = "expectation",
 #'                      fixDistance = NULL)

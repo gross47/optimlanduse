@@ -28,7 +28,7 @@
 #' require(ggplot2)
 #' require(readxl)
 #'
-#' dat <- read_xlsx(exampleData("databaseShrinked.xlsx"),
+#' dat <- read_xlsx(exampleData("exampleGosling_2020.xlsx"),
 #'                  col_names = FALSE)
 #' dat <- dataPreparation(dat)
 #' init <- initScenario(dat, uValue = 2,
