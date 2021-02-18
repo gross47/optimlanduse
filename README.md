@@ -166,8 +166,10 @@ applyDf %>% gather(key = "land-use option", value = "land-use share", -u, -beta)
 Batch example - parallel
 
 ``` r
-require(readxl)
 library(optimLanduse)
+require(readxl)
+require(foreach)
+require(doParallel)
 
 path <- exampleData("exampleGosling_2020.xlsx")
 dat <- read_xlsx(path, col_names = FALSE)
@@ -191,8 +193,10 @@ stopImplicitCluster()
 Batch application for distinct uncertainty values and fixed distance at the highest uncertainty level.
 
 ``` r
-require(readxl)
 library(optimLanduse)
+require(readxl)
+require(dplyr)
+require(tidyr)
 
 path <- exampleData("exampleGosling_2020.xlsx")
 dat <- read_xlsx(path, col_names = FALSE)
