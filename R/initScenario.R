@@ -30,13 +30,13 @@
 #' reflected by their expectations or if the indicator is calculated as expectation +
 #' uncertainty when "more is better", expectation - uncertainty respectively when "less is better".
 #' An optimization based on \emph{expectation} considers only downside risks.
-#' @param fixDistance has to be a two-column table or matrix. The table must
+#' @param fixDistance A two-column table or matrix. The table must
 #' contain the best and the worst performing landuse-type of every uncertainty
 #' scenario, which is influenced by the \emph{uValue}. The difference between
 #' these two variables reflects the uncertainty space, in other words the
 #' distance. This table can always be found (no matter if the distance is fixed
 #' or not) in result list of the \emph{initScenario} function. By default, the
-#' distance is not fixed \emph{NULL}. Fixing the distance, allows you to change
+#' distance is not fixed \emph{NULL}. Fixing the distance allows you to change
 #' the uncertainty level, without changing the uncertainty framework. For
 #' instance, you can then relate the achieved portfolio performance, with a low
 #' uncertainty level, to a wider and constant uncertainty framework within your

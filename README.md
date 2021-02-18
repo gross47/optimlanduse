@@ -39,14 +39,16 @@ We designed a graphical shiny application for the package to get a quick idea of
 This chapter provides brief overview over the package functions. Please consider their respective help pages for more information. The function lpSolveAPI comes from the **lpSolveAPI** package. https://cran.r-project.org/package=lpSolveAPI
 
 #### Input
-- Parameterdatei mit Erwartungen und Unsicherheiten. Formatiert wie in der Bespieldatei **dataset.xlsx**
-- Unsicherheit **u**
-- Form des optimistischen Szenarios, Erwartung oder Erwartung + Unsicherheit?
+- *Coefficients table* with indicotrs expectations and uncertainties. Best would be to consider the format as given in **exampleGosling_2020.xlsx**. See the help files of the **exampleData** and **initScenario** functions for more details.
+- *Uncertainty value*. See the help file of the **iniScenario** function for more details.
+- *The optimistic rule* indicates whether the optimistic outcomes of an indicator are directly reflected by their expectations or if the indicator is calculated as expectation + uncertainty when "more is better", expectation - uncertainty respectively when "less is better".
+- *Fixing the distance* allows you to change the uncertainty level, without changing the uncertainty framework. For instance, you can then relate the achieved portfolio performance, with a low uncertainty level, to a wider and constant uncertainty framework within your analysis; so the betas remain comparable with each other over the course of the uncertainty analysis.
 
 #### Output
-- Landnutzungsanteile
-- Szenarientabelle
-- Mindestabstand **&beta;**
+An **optimLanduse** object containing informations of the optimization model and solution. It contains anongst others the
+- land use allocation in the optimum,
+- the detailed table with all possible indicator combinations (the scenario table), and the
+- minimum distance **&beta;**.
 
 
 <p align="center">
@@ -56,11 +58,12 @@ This chapter provides brief overview over the package functions. Please consider
 <h3>
 <a name="6. Beispielhafte Anwendung">Exemplary application</a>
 </h3>
-Um die aktuellste stabile Version zu installieren, führen Sie den folgenden Code aus. Kann dann weg.
+Um die aktuellste stabile Version zu installieren, führen Sie den folgenden Code aus. 
+tbd. Kann nach Migration zu github weg weg.
 
 ``` r
 ## Benötigte Pakete
-# Gestestet mit R Version 4.0.3. Bei älteren Versionen müssen die Pakete womöglich einzeln nacheinander installiert werden.
+# Tested with R Version 4.0.3.
 packages <- c("devtools", "lpSolveAPI",
              "dplyr", "tidyr", "remotes",
              "readxl")
@@ -83,54 +86,45 @@ install_gitlab("forest_economics_goettingen/optimlanduse", host = "gitlab.gwdg.d
 
 Simple example
 ``` r
-# Pakete laden
-library(optimLanduse) 
-library(readxl)
-library(lpSolveAPI)  
-library(dplyr)  
-library(tidyr) 
+require(readxl)
+library(optimLanduse)
 
-# Daten einlesen
-# Es ist zwingend eine "indicator" und eine "direction" Spalte noetig
+path <- exampleData("exampleGosling_2020.xlsx")
+dat <- read_xlsx(path, col_names = FALSE)
 
-dat <- read_xlsx(exampleData("databaseShrinked.xlsx"), col_names = FALSE)
-dat <- dataPreparation(dat, uncertainty = "SE", expVAL = "mean")
+dat <- dataPreparation(dat, uncertainty = "SE", expVAL = "score")
 
-# Optimierung initialisieren
-init <- initScenario(dat, uValue = 2, optimisticRule = "expectation", fixDistance = NULL)
-
-# Optimierung durchführen
+init <- initScenario(dat,
+                     uValue = 2,
+                     optimisticRule = "expectation",
+                     fixDistance = NULL)
 result <- solveScenario(x = init)
+performance <- calcPerformance(result)
 
-# Resultate ansehen
-result$landUse # Landnutzungsanteile
-result$scenarioTable # Szenariotabelle
-result$scenarioSettings # Einstellungen anzeigen
-result$status # Erfolgreich optimiert oder abgebrochen?
-result$beta # Beta
+
+result$landUse
+result$scenarioTable
+result$scenarioSettings
+result$status
+result$beta
 ```
 
 Exemplary batch application for distinct uncertainty values u
 ``` r
-# Pakete laden
+require(readxl)
 library(optimLanduse)
-library(readxl)
 
-# Daten einlesen
-dat <- read_xlsx(exampleData("databaseShrinked.xlsx"), col_names = FALSE)
-dat <- dataPreparation(dat, uncertainty = "SE", expVAL = "mean")
+path <- exampleData("exampleGosling_2020.xlsx")
+dat <- read_xlsx(path, col_names = FALSE)
 
-# Sequenz definieren
+dat <- dataPreparation(dat, uncertainty = "SE", expVAL = "score")
+
+# define sequence of uncertainties
 u <- seq(1, 5, 1)
 
-# Batch vorbereiten
-loopDf <- data.frame(u = u, matrix(NA, nrow = length(u), ncol = 1 + length(unique(dat$landUse))))
-names(loopDf) <- c("u", "beta", unique(dat$landUse))
+# prepare empty data frame for the results
 
-# Optimierungen initialisieren und durchführen
-# Beispielhaft werden nur die Landnutzungsanteile gespeichert.
-
-# Alternative 1: Schleife, einfach zu programmieren
+## alternative 1: loop, simply implemented ##
 
 loopDf <- data.frame(u = u, matrix(NA, nrow = length(u), ncol = 1 + length(unique(dat$landUse))))
 names(loopDf) <- c("u", "beta", unique(dat$landUse))
@@ -141,7 +135,7 @@ for(i in u) {
   loopDf[loopDf$u == i,] <- c(i, result$beta, as.matrix(result$landUse))
 }
 
-# Alternative 2: apply, schneller
+# alternative 2: apply, faster
 applyDf <- data.frame(u = u)
 
 applyFun <- function(x) {
@@ -156,7 +150,7 @@ applyDf <- cbind(applyDf,
 
 Show the land-use allocations with increasing uncertainty
 ``` r
-# Show the result visually
+# Typical result visual
 require(ggplot2)
 applyDf %>% gather(key = "land-use option", value = "land-use share", -u, -beta) %>%
   ggplot(aes(y = `land-use share`, x = u, fill = `land-use option`)) +
@@ -167,48 +161,43 @@ applyDf %>% gather(key = "land-use option", value = "land-use share", -u, -beta)
 Batch example - parallel
 
 ``` r
-# Pakete laden
-library(optimLanduse) 
-library(readxl)
-library(doParallel)
+require(readxl)
+library(optimLanduse)
 
-# Daten einlesen
-dat <- read_xlsx(exampleData("databaseShrinked.xlsx"), col_names = FALSE)
-dat <- dataPreparation(dat, uncertainty = "SE", expVAL = "mean")
+path <- exampleData("exampleGosling_2020.xlsx")
+dat <- read_xlsx(path, col_names = FALSE)
 
-# Kerne initialisieren, bspw. 8 Kerne
+dat <- dataPreparation(dat, uncertainty = "SE", expVAL = "score")
+
 registerDoParallel(8)
 
-# Sequenz definieren
 u <- seq(1, 5, 1)
 
-# Batch initialisieren und durchführen
+
 loopDf1 <- foreach(i = u, .combine = rbind, .packages = "optimLanduse") %dopar% {
   init <- initScenario(dat, uValue = i, optimisticRule = "expectation", fixDistance = NULL)
   result <- solveScenario(x = init)
   c(i, result$beta, as.matrix(result$landUse))
 }
-# Falls die Kerne wieder freigegeben werden sollen
+
 stopImplicitCluster()
 ```
 
 Batch application for distinct uncertainty values and fixed distance at the highest uncertainty level.
 
 ``` r
-# Pakete laden
-require(optimLanduse)
-require(dplyr)  
 require(readxl)
-require(lpSolveAPI)  
+library(optimLanduse)
 
-# Daten einlesen
-dat <- read_xlsx(exampleData("databaseShrinked.xlsx"), col_names = FALSE)
-dat <- dataPreparation(dat, uncertainty = "SE", expVAL = "mean")
+path <- exampleData("exampleGosling_2020.xlsx")
+dat <- read_xlsx(path, col_names = FALSE)
+
+dat <- dataPreparation(dat, uncertainty = "SE", expVAL = "score")
 
 # Sequenz definieren
-u <- c(5:1) # Wichtig: rueckwaerts!
+u <- c(5:1) # Importand: decreasing!
 
-# Batch vorbereiten
+
 applyDf <- data.frame(u = u)
 dist <- NULL
 applyFun <- function(x) {
@@ -220,7 +209,6 @@ applyFun <- function(x) {
            as.matrix(result$landUse)))
 }
 
-# Run & Ergebnis
 applyDf <- cbind(applyDf,
                  t(apply(applyDf, 1, applyFun))) %>% 
                  rename_at(vars(factor(1:(length(unique(dat$landUse))+1))),
