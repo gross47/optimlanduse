@@ -204,7 +204,7 @@ dat <- read_xlsx(path, col_names = FALSE)
 dat <- dataPreparation(dat, uncertainty = "SE", expVAL = "score")
 
 # Sequenz definieren
-u <- c(5:1) # Importand: decreasing!
+u <- c(5:1) # Important: decreasing!
 
 
 applyDf <- data.frame(u = u)
