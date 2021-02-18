@@ -50,7 +50,7 @@ This chapter provides brief overview over the package functions. Please consider
 
 
 <p align="center">
-  <img width="720" height="643" src="./man/figures/flowchart.png">
+  <img width="699" height="529" src="./man/figures/flowchart.png">
 </p>
 
 <h3>
