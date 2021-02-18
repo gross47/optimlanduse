@@ -146,6 +146,8 @@ applyFun <- function(x) {
 
 applyDf <- cbind(applyDf,
                  t(apply(applyDf, 1, applyFun)))
+                 
+names(applyDf) <- c("u", "beta", names(result$landUse))
 ```
 
 Plot the land-use allocations with increasing uncertainty
