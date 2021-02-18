@@ -148,10 +148,11 @@ applyDf <- cbind(applyDf,
                  t(apply(applyDf, 1, applyFun)))
 ```
 
-Show the land-use allocations with increasing uncertainty
+Plot the land-use allocations with increasing uncertainty
 ``` r
-# Typical result visual
+# Typical result visualization
 require(ggplot2)
+require(dplyr)
 applyDf %>% gather(key = "land-use option", value = "land-use share", -u, -beta) %>%
   ggplot(aes(y = `land-use share`, x = u, fill = `land-use option`)) +
   geom_area(alpha = .8, color = "white") + theme_minimal()
