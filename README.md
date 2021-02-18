@@ -50,7 +50,7 @@ This chapter provides brief overview over the package functions. Please consider
 
 
 <p align="center">
-  <img width="720" height="643" src="./man/figures/flussdiagrammOptimLanduse.PNG">
+  <img width="720" height="643" src="./man/figures/flowchart.png">
 </p>
 
 <h3>
