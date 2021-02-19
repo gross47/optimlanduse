@@ -94,7 +94,7 @@ solveScenario <- function (x, digitsPrecision = 4,
     lpSolveAPI::set.rhs(lprec = lpaObj, b = c(1, rep(piConstraintRhs[2], dim(piConstraintCoefficients)[1])))
 
 
-    statusOpt <- lpSolveAPI::solve.lpExtPtr(lpaObj)
+    (statusOpt <- lpSolveAPI::solve.lpExtPtr(lpaObj))
 
     #if(all(c(piConstraintRhs[3] - piConstraintRhs[2], piConstraintRhs[2] - piConstraintRhs[1]) <= precision)) { # Prüfen!
     if(piConstraintRhs[3] - piConstraintRhs[1] <= precision) {
@@ -112,6 +112,7 @@ solveScenario <- function (x, digitsPrecision = 4,
   } else {
     retPiConstraintRhs <- piConstraintRhs[2]
   }
+
 
   if(statusOpt != 0) {
     cat(paste0("No optimum found. Status code "), statusOpt, " (see solve.lpExtPtr {lpSolveAPI} documentation).")
